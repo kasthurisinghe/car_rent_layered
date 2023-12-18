@@ -9,4 +9,6 @@ public interface CreateUserDao {
     CreateUserEntity findUser(String id) throws SQLException;
 
     boolean saveAdmin(CreateUserEntity createUserEntity) throws SQLException;
+
+    boolean deleteUser(String userId) throws SQLException;
 }

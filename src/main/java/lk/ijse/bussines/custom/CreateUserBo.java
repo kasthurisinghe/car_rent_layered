@@ -10,4 +10,6 @@ public interface CreateUserBo {
     CreateUserdto findUser(String id) throws SQLException;
 
     boolean saveAdminUser(CreateUserdto createUserDto) throws SQLException;
+
+    boolean deleteUser(String userId) throws SQLException;
 }

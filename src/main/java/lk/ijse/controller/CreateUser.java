@@ -56,6 +56,7 @@ public class CreateUser {
     private ToggleGroup gender;
     @FXML
     String genderOfUser;
+    CreateUserBo createUserBoimpl=FactoryBo.getBo(BoType.ADMINUSER);
     public void getGender(ActionEvent actionEvent) {
 
         if(female.isSelected()){
@@ -63,10 +64,7 @@ public class CreateUser {
         }else {
             genderOfUser=male.getText();
         }
-        System.out.println(genderOfUser);
     }
-
-
 
     @FXML
     void btnBackClickonAction(ActionEvent event) throws IOException {
@@ -79,7 +77,7 @@ public class CreateUser {
         stage.setTitle("Main Menu");
     }
 
-    CreateUserBo createUserBoimpl=FactoryBo.getBo(BoType.ADMINUSER);
+
     @FXML
     void btnCreateUserClockOnAction(ActionEvent event) throws SQLException, NoSuchAlgorithmException {
 
@@ -153,7 +151,20 @@ public class CreateUser {
 
 
     @FXML
-    void btnDeleteClickOnAction(ActionEvent event) {
+    void btnDeleteClickOnAction(ActionEvent event) throws SQLException {
+        try {
+            String userId=UserId.getText();
+            boolean isDeleted= createUserBoimpl.deleteUser(userId);
+            if (isDeleted){
+                new Alert(Alert.AlertType.CONFIRMATION,"Admin user deleted !").show();
+                clearFields();
+            }
+            else {
+                new Alert(Alert.AlertType.INFORMATION, "No user found").show();
+            }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        }
 
     }
 

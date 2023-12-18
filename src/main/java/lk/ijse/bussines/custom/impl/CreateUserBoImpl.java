@@ -1,5 +1,7 @@
 package lk.ijse.bussines.custom.impl;
 
+import lk.ijse.bussines.BoType;
+import lk.ijse.bussines.FactoryBo;
 import lk.ijse.bussines.custom.CreateUserBo;
 import lk.ijse.dao.DaoFactory;
 import lk.ijse.dao.DaoType;
@@ -38,5 +40,11 @@ public class CreateUserBoImpl implements CreateUserBo {
                 createUserDto.getGender()
         );
         return createUserDaoImpl.saveAdmin(createUserEntity);
+    }
+
+    @Override
+    public boolean deleteUser(String userId) throws SQLException {
+        boolean isDeleted= createUserDaoImpl.deleteUser(userId);
+        return isDeleted;
     }
 }

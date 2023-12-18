@@ -53,4 +53,18 @@ public class CreateUserDaoImpl implements CreateUserDao {
 
         return pstm.executeUpdate() > 0;
     }
+
+    @Override
+    public boolean deleteUser(String userId) throws SQLException {
+        String sql="DELETE FROM admin_user WHERE id=?";
+
+        Connection connection=DbConnection.getInstance().getConnection();
+        PreparedStatement pstm=connection.prepareStatement(sql);
+
+
+        pstm.setString(1,userId);
+        if (pstm.executeUpdate()>0){
+            return true;
+        }return false;
+    }
 }
