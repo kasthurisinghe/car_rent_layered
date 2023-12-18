@@ -1,7 +1,7 @@
 package lk.ijse;
 
-public class Main {
+public class LanucherWrapper {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        Launcher.main(args);
     }
 }
