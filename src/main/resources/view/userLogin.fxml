@@ -59,7 +59,7 @@
       </Button>
       <ImageView blendMode="MULTIPLY" fitHeight="185.0" fitWidth="410.0" layoutX="209.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../carRent/src/main/resources/car-rental-vector-13423582.jpg" />
+            <Image url="@../pics/car-rental-vector-13423582.jpg" />
          </image>
       </ImageView>
       <Label layoutX="24.0" layoutY="219.0" text="Havent an account?" />

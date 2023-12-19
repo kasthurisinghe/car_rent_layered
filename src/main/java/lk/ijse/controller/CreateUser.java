@@ -39,7 +39,9 @@ public class CreateUser {
 
 
     @FXML
-    private RadioButton female,male;
+    private RadioButton female;
+    @FXML
+    private RadioButton male;
     @FXML
     private TextField UserId;
     @FXML

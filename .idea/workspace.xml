@@ -4,13 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4e7e30b8-a599-4d0e-b739-dd85f33f9e0d" name="Changes" comment="create new user admin, back to main login form feature and user login feature enabled">
+    <list default="true" id="4e7e30b8-a599-4d0e-b739-dd85f33f9e0d" name="Changes" comment="dlete admin user feature is enabled">
+      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/bussines/custom/UserLoginBo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/bussines/custom/impl/LoginBoImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/dao/custom/Userdao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/dao/custom/impl/UserDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/bussines/custom/CreateUserBo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/bussines/custom/CreateUserBo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/bussines/custom/impl/CreateUserBoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/bussines/custom/impl/CreateUserBoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/bussines/BoType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/bussines/BoType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/bussines/FactoryBo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/bussines/FactoryBo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/CreateUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/CreateUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/dao/custom/CreateUserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/dao/custom/CreateUserDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/dao/custom/impl/CreateUserDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/dao/custom/impl/CreateUserDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/UserLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/UserLogin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/dao/DaoFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/dao/DaoFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/dao/DaoType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/dao/DaoType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/view/createUser.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/createUser.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/view/userLogin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/userLogin.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,8 +30,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="FxmlFile" />
-        <option value="Interface" />
         <option value="Enum" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -73,21 +82,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.LanucherWrapper.executor": "Run",
-    "Application.Launcher.executor": "Run",
-    "Application.Main.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "F:/CMJD/stockManagement with maven and javafx/car_rentLayered/src/main/resources/view"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.LanucherWrapper.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Launcher.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;F:/CMJD/stockManagement with maven and javafx/car_rentLayered/src/main/resources/view&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="F:\CMJD\stockManagement with maven and javafx\car_rentLayered\src\main\resources\view" />
@@ -141,11 +150,20 @@
       <option name="project" value="LOCAL" />
       <updated>1702915655611</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="dlete admin user feature is enabled">
+      <option name="closed" value="true" />
+      <created>1702917339617</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1702917339617</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="create new user admin, back to main login form feature and user login feature enabled" />
-    <option name="LAST_COMMIT_MESSAGE" value="create new user admin, back to main login form feature and user login feature enabled" />
+    <MESSAGE value="dlete admin user feature is enabled" />
+    <option name="LAST_COMMIT_MESSAGE" value="dlete admin user feature is enabled" />
   </component>
 </project>
