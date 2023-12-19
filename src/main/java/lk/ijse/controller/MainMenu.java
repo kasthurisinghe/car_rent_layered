@@ -1,9 +1,11 @@
 package lk.ijse.controller;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 
 public class MainMenu {
     public void btnExitClickOnAction(ActionEvent actionEvent) {
+        Platform.exit();
     }
 
     public void btnClickOnAllRental(ActionEvent actionEvent) {
