@@ -30,6 +30,8 @@ public class MainMenu {
 
     @FXML
     private Button rentalBtn;
+    @FXML
+    private Button btnReturn;
 
     @FXML
     private AnchorPane rootNode1;
@@ -64,5 +66,12 @@ public class MainMenu {
         Parent parent = FXMLLoader.load(this.getClass().getResource("/view/bookingDetails.fxml"));
         rootNode1.getChildren().clear();
         rootNode1.getChildren().add(parent);
+    }
+
+    public void btnReturnOnAction(ActionEvent actionEvent) throws IOException {
+        Parent  load = FXMLLoader.load(this.getClass().getResource("/view/returnVehicle.fxml"));
+
+        rootNode1.getChildren().clear();
+        rootNode1.getChildren().add(load);
     }
 }

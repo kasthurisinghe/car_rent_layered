@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4e7e30b8-a599-4d0e-b739-dd85f33f9e0d" name="Changes" comment="exit button of the main menu is enabled">
+    <list default="true" id="4e7e30b8-a599-4d0e-b739-dd85f33f9e0d" name="Changes" comment="customer details ,vehicle registory and vehicle booking button is enabled">
+      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/ReturnVehicle.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/view/returnVehicle.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/CustomerDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/CustomerDetails.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/MainMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/view/customerDetails.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/customerDetails.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/view/mainMenu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/mainMenu.fxml" afterDir="false" />
@@ -21,8 +24,8 @@
       <list>
         <option value="Enum" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -164,7 +167,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702961898590</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="customer details ,vehicle registory and vehicle booking button is enabled">
+      <option name="closed" value="true" />
+      <created>1703145024958</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1703145024958</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -172,6 +183,7 @@
     <MESSAGE value="dlete admin user feature is enabled" />
     <MESSAGE value="admin user login enabled" />
     <MESSAGE value="exit button of the main menu is enabled" />
-    <option name="LAST_COMMIT_MESSAGE" value="exit button of the main menu is enabled" />
+    <MESSAGE value="customer details ,vehicle registory and vehicle booking button is enabled" />
+    <option name="LAST_COMMIT_MESSAGE" value="customer details ,vehicle registory and vehicle booking button is enabled" />
   </component>
 </project>

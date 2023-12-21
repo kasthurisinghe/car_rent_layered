@@ -43,7 +43,7 @@
             <TextField fx:id="custAdd" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="custName" GridPane.columnIndex="3" />
             <TextField fx:id="custNic" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <TextField fx:id="mobile" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="mobile" promptText="XXX XX XX XXX" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label GridPane.columnIndex="2" GridPane.rowIndex="2" />
             <Label text="Label" GridPane.columnIndex="2" GridPane.rowIndex="2" />
          </children>
