@@ -6,73 +6,73 @@ import javafx.scene.control.*;
 
 public class CustomerDetails {
     @FXML
-    private TableColumn<?, ?> colAddress;
+    private Button btnDelete;
 
     @FXML
-    private TableColumn<?, ?> colCustomerId;
+    private Button btnSave;
 
     @FXML
-    private TableColumn<?, ?> colCustomername;
+    private Button btnUpdate;
+
+    @FXML
+    private TableColumn<?, ?> colAddres;
+
+    @FXML
+    private TableColumn<?, ?> colId;
 
     @FXML
     private TableColumn<?, ?> colMobile;
 
     @FXML
+    private TableColumn<?, ?> colName;
+
+    @FXML
     private TableColumn<?, ?> colNic;
 
     @FXML
-    private TableColumn<?, ?> colRented;
+    private TextField custAdd;
 
     @FXML
-    private Button  createCustomerBtn;
+    private TextField custId;
 
     @FXML
-    private Button deleteCustomerbtn;
+    private TextField custName;
 
     @FXML
-    private Button findCustomerbtn;
+    private TextField custNic;
 
     @FXML
-    private Label notifyMessage;
+    private ToggleGroup gender;
 
     @FXML
-    private TableView<?> tblCustomer;
+    private TextField mobile;
 
     @FXML
-    private TextField txtCstId;
+    private RadioButton remoFemale;
 
     @FXML
-    private TextField txtCustomerAddress;
+    private RadioButton remoMale;
 
     @FXML
-    private TextField txtCustomerMobile;
+    private TableView<?> tblCust;
 
     @FXML
-    private TextField txtCustomerName;
-
-    @FXML
-    private TextField txtCustomerNic;
-
-    @FXML
-    private Button updateCustomerbtn;
-
-    @FXML
-    void btnCreateCustomerClickOnAction(ActionEvent event) {
+    void btnDeleteOnAction(ActionEvent event) {
 
     }
 
     @FXML
-    void btnDeleteClickOnAction(ActionEvent event) {
+    void btnSaveOnAction(ActionEvent event) {
 
     }
 
     @FXML
-    void btnFindCustomerClickOnAction(ActionEvent event) {
+    void btnUpdateOnAction(ActionEvent event) {
 
     }
 
     @FXML
-    void btnUpdateClickOnAction(ActionEvent event) {
+    void txtClickOnAction(ActionEvent event) {
 
     }
 }
