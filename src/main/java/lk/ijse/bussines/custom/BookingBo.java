@@ -6,4 +6,6 @@ import java.sql.SQLException;
 
 public interface BookingBo {
     boolean saveBooking(BookingDto bookingDto) throws SQLException;
+
+    BookingDto searchBooking(String bookingId) throws SQLException;
 }

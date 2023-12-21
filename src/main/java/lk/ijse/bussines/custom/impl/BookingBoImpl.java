@@ -8,6 +8,7 @@ import lk.ijse.dto.BookingDto;
 import lk.ijse.entity.BookingEntity;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
 public class BookingBoImpl implements BookingBo {
@@ -17,7 +18,7 @@ public class BookingBoImpl implements BookingBo {
 
 //        long daysDiff = ChronoUnit.DAYS.between(startDate, endDate); to get the difference between LocalDays
 
-        boolean inRent=true;
+        boolean isReturned=false;
         Integer rate=bookingDto.getRate();
         Integer duration= (int) ChronoUnit.DAYS.between(bookingDto.getStartDat(),bookingDto.getEndDat());
         Integer total= bookingDto.getRate()*duration;
@@ -30,9 +31,24 @@ public class BookingBoImpl implements BookingBo {
                 bookingDto.getEndDat(),
                 bookingDto.getBookingId(),
                 total,
-                inRent
+                isReturned
         );
 
         return bookingDaoImpl.saveBooking(bookingEntity);
+    }
+
+    @Override
+    public BookingDto searchBooking(String bookingId) throws SQLException {
+        BookingEntity bookingEntity= bookingDaoImpl.searchBooking(bookingId);
+
+        String bookiId=bookingEntity.getBookingId();
+        String carId=bookingEntity.getCarId();
+        Integer rate= bookingEntity.getRate();
+        String custId=bookingEntity.getCustId();
+        LocalDate startDate=bookingEntity.getStartDat();
+        LocalDate endDate=bookingEntity.getEndDat();
+        Boolean isReturned=bookingEntity.getIsReturned();
+
+        return new BookingDto(bookingId,carId,rate,custId,startDate,endDate,isReturned);
     }
 }

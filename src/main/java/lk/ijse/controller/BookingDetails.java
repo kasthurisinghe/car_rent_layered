@@ -68,7 +68,8 @@ public class BookingDetails {
     @FXML
     void btnRentClickOnAction(ActionEvent event) throws SQLException {
 
-//        try {
+        try {
+            Boolean isReturned=false;
             String bookingId=txtBookingId.getText();
             String carId=txtCarId.getText();
             Integer rate= Integer.valueOf(txtRate.getText());
@@ -76,18 +77,29 @@ public class BookingDetails {
             LocalDate endDat=endDate.getValue();
             LocalDate startDat=startDate.getValue();
 
-            BookingDto bookingDto=new BookingDto(bookingId,carId,rate,custId,endDat,startDat);
+            BookingDto bookingDto=new BookingDto(bookingId,carId,rate,custId,endDat,startDat,isReturned);
             boolean isSaved= bookingBoImpl.saveBooking(bookingDto);
 
             if (isSaved){
                 new Alert(Alert.AlertType.INFORMATION, "Booking details saved successfully").show();
+                clearFields();
             }
-//        } catch (NumberFormatException e) {
-//            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
-//        } catch (SQLException e) {
-//            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
-//        }
+        } catch (NumberFormatException e) {
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+        }
 
+    }
+
+    private void clearFields() {
+        txtCarId.setText("");
+        txtBookingId.setText("");
+        TxtCustomerId.setText("");
+        txtRate.setText("");
+        startDate.setValue(null);
+        endDate.setValue(null);
+        msgLab.setText("");
     }
 
     @FXML
@@ -96,12 +108,30 @@ public class BookingDetails {
     }
 
     @FXML
-    void txtClickOnAction(ActionEvent event) {
+    void txtClickOnAction(ActionEvent event) throws SQLException {
+
 
     }
 
     @FXML
-    void txtIdClickOnAction(ActionEvent event) {
+    void txtIdClickOnAction(ActionEvent event) throws SQLException {
+        String bookingId=txtBookingId.getText();
+        try {
+            BookingDto bookingDto=bookingBoImpl.searchBooking(bookingId);
 
+            txtCarId.setText(bookingDto.getCarId());
+            txtRate.setText(String.valueOf(bookingDto.getRate()));
+            TxtCustomerId.setText(bookingDto.getCustId());
+            startDate.setValue(bookingDto.getStartDat());
+            endDate.setValue(bookingDto.getEndDat());
+            txtBookingId.setText(bookingDto.getBookingId());
+            if (bookingDto.getIsReturned()) {
+                msgLab.setText("vehicle is not returned yet");
+            }else {
+                msgLab.setText("vehicle is returned");
+            }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+        }
     }
 }
