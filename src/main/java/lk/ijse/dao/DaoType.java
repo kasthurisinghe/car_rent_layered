@@ -1,5 +1,5 @@
 package lk.ijse.dao;
 
 public enum DaoType {
-    ADMINUSER, LOGINDAO;
+    ADMINUSER, LOGINDAO,BOOKINGDAO;
 }

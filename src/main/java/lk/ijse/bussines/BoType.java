@@ -1,5 +1,5 @@
 package lk.ijse.bussines;
 
 public enum BoType {
-    ADMINUSER,LOGINBO;
+    ADMINUSER,LOGINBO,BOOKINGBO;
 }

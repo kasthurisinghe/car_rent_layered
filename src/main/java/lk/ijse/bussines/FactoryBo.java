@@ -1,6 +1,7 @@
 package lk.ijse.bussines;
 
 
+import lk.ijse.bussines.custom.impl.BookingBoImpl;
 import lk.ijse.bussines.custom.impl.CreateUserBoImpl;
 import lk.ijse.bussines.custom.impl.LoginBoImpl;
 
@@ -13,9 +14,11 @@ public class FactoryBo {
 
             case LOGINBO:
                 return (T) new LoginBoImpl();
+
+            case BOOKINGBO:
+                return (T) new BookingBoImpl();
             default :
                 return null;
-
         }
     }
 }
