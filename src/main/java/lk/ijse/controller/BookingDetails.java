@@ -62,6 +62,16 @@ public class BookingDetails {
     BookingBo bookingBoImpl=FactoryBo.getBo(BoType.BOOKINGBO);
     @FXML
     void btnDeleteClickOnAction(ActionEvent event) {
+        try {
+            String bId=txtBookingId.getText();
+
+            Boolean isDeleted=bookingBoImpl.deleteBooking(bId);
+            if (isDeleted){
+                new Alert(Alert.AlertType.CONFIRMATION, "successfully deleted").show();
+            }
+        } catch (Exception e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        }
 
     }
 
@@ -103,7 +113,24 @@ public class BookingDetails {
     }
 
     @FXML
-    void btnUpdateClickOnAction(ActionEvent event) {
+    void btnUpdateClickOnAction(ActionEvent event) throws SQLException {
+        boolean isReturned=false;
+        try {
+            String bId=txtBookingId.getText();
+            String carId=txtCarId.getText();
+            Integer rate= Integer.valueOf(txtRate.getText());
+            String custId=TxtCustomerId.getText();
+            LocalDate startDa=startDate.getValue();
+            LocalDate endDa=endDate.getValue();
+            BookingDto bookingDto=new BookingDto(bId,carId,rate,custId,startDa,endDa,isReturned);
+            Boolean isUpdated=bookingBoImpl.updateBooking(bookingDto);
+            if (isUpdated){
+                new Alert(Alert.AlertType.CONFIRMATION,"Booking updated successfully").show();
+                clearFields();
+            }
+        } catch (NumberFormatException | SQLException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        }
 
     }
 

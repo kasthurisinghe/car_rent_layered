@@ -18,23 +18,25 @@ public class BookingBoImpl implements BookingBo {
 
 //        long daysDiff = ChronoUnit.DAYS.between(startDate, endDate); to get the difference between LocalDays
 
-        boolean isReturned=false;
-        Integer rate=bookingDto.getRate();
-        Integer duration= (int) ChronoUnit.DAYS.between(bookingDto.getStartDat(),bookingDto.getEndDat());
-        Integer total= bookingDto.getRate()*duration;
-
         BookingEntity bookingEntity=new BookingEntity(
                 bookingDto.getCarId(),
-                rate,
+                bookingDto.getRate(),
                 bookingDto.getCustId(),
                 bookingDto.getStartDat(),
                 bookingDto.getEndDat(),
                 bookingDto.getBookingId(),
-                total,
-                isReturned
+                getTotal(bookingDto),
+                bookingDto.getIsReturned()
         );
 
         return bookingDaoImpl.saveBooking(bookingEntity);
+    }
+
+    private Integer getTotal(BookingDto bookingDto) {
+
+        Integer duration= (int) ChronoUnit.DAYS.between(bookingDto.getStartDat(),bookingDto.getEndDat());
+        Integer total= bookingDto.getRate()*duration;
+        return total;
     }
 
     @Override
@@ -50,5 +52,25 @@ public class BookingBoImpl implements BookingBo {
         Boolean isReturned=bookingEntity.getIsReturned();
 
         return new BookingDto(bookingId,carId,rate,custId,startDate,endDate,isReturned);
+    }
+
+    @Override
+    public Boolean updateBooking(BookingDto bookingDto) throws SQLException {
+        BookingEntity bookingEntity=new BookingEntity(
+                bookingDto.getCarId(),
+                bookingDto.getRate(),
+                bookingDto.getCustId(),
+                bookingDto.getStartDat(),
+                bookingDto.getEndDat(),
+                bookingDto.getBookingId(),
+                getTotal(bookingDto),
+                bookingDto.getIsReturned()
+        );
+        return bookingDaoImpl.updateBooking(bookingEntity);
+    }
+
+    @Override
+    public Boolean deleteBooking(String bId) throws SQLException {
+        return bookingDaoImpl.deleteBooking(bId);
     }
 }

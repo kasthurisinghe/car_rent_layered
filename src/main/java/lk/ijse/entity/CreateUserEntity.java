@@ -16,4 +16,5 @@ public class CreateUserEntity {
     private String pass;
     private String gender;
 
+
 }

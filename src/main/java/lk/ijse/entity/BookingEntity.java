@@ -17,5 +17,5 @@ public class BookingEntity {
     private LocalDate startDat;
     private String bookingId;
     private Integer total;
-    private Boolean isRented;
+    private Boolean isReturned;
 }

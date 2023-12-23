@@ -9,4 +9,8 @@ public interface BookingDao {
     boolean saveBooking(BookingEntity bookingEntity) throws SQLException;
 
     BookingEntity searchBooking(String bookingId) throws SQLException;
+
+    Boolean updateBooking(BookingEntity bookingEntity) throws SQLException;
+
+    Boolean deleteBooking(String bId) throws SQLException;
 }

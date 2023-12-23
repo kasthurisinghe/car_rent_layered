@@ -60,4 +60,40 @@ public class BookingDaoImpl implements BookingDao {
         }
         return null;
     }
+
+    @Override
+    public Boolean updateBooking(BookingEntity bookingEntity) throws SQLException {
+        Connection connection=DbConnection.getInstance().getConnection();
+        String sql="UPDATE booking_details SET car_id=?, rate =?, customer_id=?, start_date=?, end_date=?,total_price=?, is_returned=? WHERE booking_id=?";
+         PreparedStatement preparedStatement=connection.prepareStatement(sql);
+
+         preparedStatement.setString(1,bookingEntity.getCarId());
+        preparedStatement.setInt(2,bookingEntity.getRate());
+        preparedStatement.setString(3,bookingEntity.getCustId());
+        preparedStatement.setDate(4, Date.valueOf(bookingEntity.getStartDat()));
+        preparedStatement.setDate(5, Date.valueOf(bookingEntity.getEndDat()));
+        preparedStatement.setInt(6,bookingEntity.getTotal());
+        preparedStatement.setBoolean(7,bookingEntity.getIsReturned());
+        preparedStatement.setString(8, bookingEntity.getBookingId());
+
+        if (preparedStatement.executeUpdate()>0){
+            return true;
+        }
+        return false;
+
+    }
+
+    @Override
+    public Boolean deleteBooking(String bId) throws SQLException {
+        Connection connection=DbConnection.getInstance().getConnection();
+        String sql="DELETE FROM booking_details WHERE booking_id=?";
+
+        PreparedStatement preparedStatement=connection.prepareStatement(sql);
+
+        preparedStatement.setString(1,bId);
+
+        if (preparedStatement.executeUpdate()>0){
+            return true;
+        }return false;
+    }
 }

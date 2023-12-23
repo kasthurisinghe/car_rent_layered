@@ -17,4 +17,5 @@ public class BookingDto {
     private String custId;
     private LocalDate endDat;
     private LocalDate startDat;
+    Boolean isReturned;
 }
