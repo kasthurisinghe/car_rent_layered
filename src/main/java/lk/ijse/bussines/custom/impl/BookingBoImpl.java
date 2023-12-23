@@ -1,5 +1,6 @@
 package lk.ijse.bussines.custom.impl;
 
+import javafx.scene.control.Alert;
 import lk.ijse.bussines.custom.BookingBo;
 import lk.ijse.dao.DaoFactory;
 import lk.ijse.dao.DaoType;
@@ -34,9 +35,15 @@ public class BookingBoImpl implements BookingBo {
 
     private Integer getTotal(BookingDto bookingDto) {
 
-        Integer duration= (int) ChronoUnit.DAYS.between(bookingDto.getStartDat(),bookingDto.getEndDat());
-        Integer total= bookingDto.getRate()*duration;
-        return total;
+        try {
+            Integer duration= (int) ChronoUnit.DAYS.between(bookingDto.getStartDat(),bookingDto.getEndDat());
+
+            Integer total= bookingDto.getRate()*duration;
+            return total;
+        } catch (Exception e) {
+            new Alert(Alert.AlertType.ERROR,"check the start date and end date").show();
+        }
+        return null;
     }
 
     @Override

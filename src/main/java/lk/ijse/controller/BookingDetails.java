@@ -77,29 +77,35 @@ public class BookingDetails {
 
     @FXML
     void btnRentClickOnAction(ActionEvent event) throws SQLException {
+        Boolean isReturned=false;
+        String bookingId=txtBookingId.getText();
+        String carId=txtCarId.getText();
 
-        try {
-            Boolean isReturned=false;
-            String bookingId=txtBookingId.getText();
-            String carId=txtCarId.getText();
-            Integer rate= Integer.valueOf(txtRate.getText());
-            String custId=TxtCustomerId.getText();
-            LocalDate endDat=endDate.getValue();
-            LocalDate startDat=startDate.getValue();
+        String custId=TxtCustomerId.getText();
+        LocalDate endDat=endDate.getValue();
+        LocalDate startDat=startDate.getValue();
 
-            BookingDto bookingDto=new BookingDto(bookingId,carId,rate,custId,endDat,startDat,isReturned);
-            boolean isSaved= bookingBoImpl.saveBooking(bookingDto);
 
-            if (isSaved){
-                new Alert(Alert.AlertType.INFORMATION, "Booking details saved successfully").show();
-                clearFields();
+
+            if (!bookingId.equals("") && !carId.equals("") &&  !custId.equals("") && !txtRate.getText().equals("") ) {
+                try {
+                    Integer rate= Integer.valueOf(txtRate.getText());
+                    BookingDto bookingDto=new BookingDto(bookingId,carId,rate,custId,endDat,startDat,isReturned);
+                    boolean isSaved= bookingBoImpl.saveBooking(bookingDto);
+
+                    if (isSaved){
+                        new Alert(Alert.AlertType.INFORMATION, "Booking details saved successfully").show();
+                        clearFields();
+                    }
+                } catch (NumberFormatException e) {
+                    new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+                } catch (SQLException e) {
+                    new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+                }
             }
-        } catch (NumberFormatException e) {
-            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
-        }
-
+            else {
+                new Alert(Alert.AlertType.WARNING, "Please fill all the fields here").show();
+            }
     }
 
     private void clearFields() {
