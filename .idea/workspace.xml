@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4e7e30b8-a599-4d0e-b739-dd85f33f9e0d" name="Changes" comment="crud operations of the booking details are completed">
+    <list default="true" id="4e7e30b8-a599-4d0e-b739-dd85f33f9e0d" name="Changes" comment="fields of booking details are validated">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/bussines/custom/impl/BookingBoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/bussines/custom/impl/BookingBoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/BookingDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/BookingDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/CreateUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/CreateUser.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -194,7 +193,15 @@
       <option name="project" value="LOCAL" />
       <updated>1703304658251</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="fields of booking details are validated">
+      <option name="closed" value="true" />
+      <created>1703310281524</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1703310281524</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -206,6 +213,7 @@
     <MESSAGE value="return button enables" />
     <MESSAGE value="rent button in booking details enabled" />
     <MESSAGE value="crud operations of the booking details are completed" />
-    <option name="LAST_COMMIT_MESSAGE" value="crud operations of the booking details are completed" />
+    <MESSAGE value="fields of booking details are validated" />
+    <option name="LAST_COMMIT_MESSAGE" value="fields of booking details are validated" />
   </component>
 </project>

@@ -57,15 +57,17 @@ public class CreateUser {
     @FXML
     private ToggleGroup gender;
     @FXML
-    String genderOfUser;
+    String genderOfUser="gender";
     CreateUserBo createUserBoimpl=FactoryBo.getBo(BoType.ADMINUSER);
     public void getGender(ActionEvent actionEvent) {
 
-        if(female.isSelected()){
-            genderOfUser= female.getText();
-        }else {
-            genderOfUser=male.getText();
-        }
+
+            if(female.isSelected()){
+                genderOfUser= female.getText();
+            } else {
+                genderOfUser=male.getText();
+            }
+
     }
 
     @FXML
@@ -95,24 +97,29 @@ public class CreateUser {
 
         boolean isValid = pattern.matcher(mobile).matches();
 
-        if (!id.equals(null) && !name.equals(null) && !addr.equals(null)  && !mobile.equals(null) && !pass.equals(null) && !rePass.equals(null) && !genderOfUser.equals(null)){
+        if (!id.equals("") && !name.equals("") && !addr.equals("")  && !mobile.equals("") && !pass.equals("") && !rePass.equals("") && !genderOfUser.equals("gender") ){
             if (isValid){
                 if(pass.equals(rePass)){
-                    CreateUserdto createUserDto=new CreateUserdto(id,name,addr,mobile,md5Pass,genderOfUser);
+//                    if (genderOfUser.equals("")) {
+                        CreateUserdto createUserDto = new CreateUserdto(id, name, addr, mobile, md5Pass, genderOfUser);
 
-                    boolean isSaved= createUserBoimpl.saveAdminUser(createUserDto) ;
-                    if (isSaved){
-                        new Alert(Alert.AlertType.CONFIRMATION, "the adminuser Successfully saved").show();
-                        clearFields();
-                    }
+                        boolean isSaved = createUserBoimpl.saveAdminUser(createUserDto);
+                        if (isSaved) {
+                            new Alert(Alert.AlertType.CONFIRMATION, "the adminuser Successfully saved").show();
+                            clearFields();
+                        }
+//                    }
+//                    else {
+//                        new Alert(Alert.AlertType.ERROR,"plese select the gender of the user").show();
+//                    }
                 }else {
-                    new Alert(Alert.AlertType.ERROR, "Password is in not matching").show();
+                    new Alert(Alert.AlertType.WARNING, "Password is in not matching").show();
                 }
             }else {
-                new Alert(Alert.AlertType.ERROR, "Mobile Phone number is not valid").show();
+                new Alert(Alert.AlertType.WARNING, "Mobile Phone number is not valid").show();
             }
         }else {
-            new Alert(Alert.AlertType.ERROR, "Please fill all the fiels").show();
+            new Alert(Alert.AlertType.WARNING, "Please give all the details").show();
         }
 
     }
