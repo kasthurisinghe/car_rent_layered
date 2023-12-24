@@ -45,6 +45,11 @@ public class ReturnBoImpl implements ReturnBo {
 
     }
 
+    @Override
+    public Boolean acceptReturn(String booId,Boolean isReturned) throws SQLException {
+        return returnDaoImpl.acceptReturn(booId,isReturned);
+    }
+
     private int getDuration(LocalDate today, LocalDate endDate) {
         return  (int) ChronoUnit.DAYS.between(endDate,today);
     }

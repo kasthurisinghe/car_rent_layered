@@ -7,4 +7,6 @@ import java.time.LocalDate;
 
 public interface ReturnDao {
     ReturnEntity findRental(String bookId) throws SQLException;
+
+    Boolean acceptReturn(String booId, Boolean isReturned) throws SQLException;
 }

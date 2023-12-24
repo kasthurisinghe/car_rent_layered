@@ -7,4 +7,6 @@ import java.time.LocalDate;
 
 public interface ReturnBo {
     ReturnDto findRental(String bookId , LocalDate duedate) throws SQLException;
+
+    Boolean acceptReturn(String booId,Boolean isReturned) throws SQLException;
 }

@@ -42,9 +42,16 @@ public class ReturnVehicle {
 
     ReturnBo returnBoImpl= FactoryBo.getBo(BoType.RETURNBO);
     public void btnAcceptOnAction(ActionEvent actionEvent) {
-        String cusId= custId.getText();
-
-
+        String booId=txtBookingId.getText();
+        Boolean isReturne=true;
+        try {
+            Boolean isReturned=returnBoImpl.acceptReturn(booId,isReturne);
+            if (isReturned){
+                new Alert(Alert.AlertType.CONFIRMATION,"Vehicle return Accepted").show();
+            }
+        } catch (Exception e) {
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+        }
     }
 
 

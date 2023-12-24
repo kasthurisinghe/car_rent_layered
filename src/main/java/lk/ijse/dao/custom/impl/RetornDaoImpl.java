@@ -58,4 +58,17 @@ public class RetornDaoImpl implements ReturnDao {
                 }
             } return null;
     }
+
+    @Override
+    public Boolean acceptReturn(String booId, Boolean isReturned) throws SQLException {
+        Connection connection=DbConnection.getInstance().getConnection();
+        String sql="UPDATE booking_details SET is_returned = ? WHERE booking_id=?";
+        PreparedStatement preparedStatement =connection.prepareStatement(sql);
+
+        preparedStatement.setString(1, String.valueOf(isReturned));
+        preparedStatement.setString(2,booId);
+        if (preparedStatement.executeUpdate()>0){
+            return true;
+        }return false;
+    }
 }
