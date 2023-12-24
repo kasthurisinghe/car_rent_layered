@@ -90,7 +90,7 @@ public class BookingDetails {
             if (!bookingId.equals("") && !carId.equals("") &&  !custId.equals("") && !txtRate.getText().equals("") ) {
                 try {
                     Integer rate= Integer.valueOf(txtRate.getText());
-                    BookingDto bookingDto=new BookingDto(bookingId,carId,rate,custId,endDat,startDat,isReturned);
+                    BookingDto bookingDto=new BookingDto(bookingId,carId,rate,custId,startDat,endDat,isReturned);
                     boolean isSaved= bookingBoImpl.saveBooking(bookingDto);
 
                     if (isSaved){

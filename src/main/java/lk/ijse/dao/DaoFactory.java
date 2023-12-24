@@ -6,6 +6,7 @@ import lk.ijse.dao.custom.Userdao;
 import lk.ijse.dao.custom.impl.BookingDaoImpl;
 import lk.ijse.dao.custom.impl.CreateUserDaoImpl;
 import lk.ijse.dao.custom.impl.CustomerDaoImpl;
+import lk.ijse.dao.custom.impl.RetornDaoImpl;
 
 public class DaoFactory {
         public  static <T>T  getDao(DaoType type){
@@ -16,6 +17,9 @@ public class DaoFactory {
                     return (T) new BookingDaoImpl();
                 case CUSTOMERDAO:
                     return (T) new CustomerDaoImpl();
+
+                case RETURNDAO:
+                    return (T) new RetornDaoImpl();
                 default:
                     return null;
             }

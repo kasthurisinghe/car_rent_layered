@@ -14,6 +14,7 @@ import java.time.temporal.ChronoUnit;
 
 public class BookingBoImpl implements BookingBo {
     BookingDao bookingDaoImpl= DaoFactory.getDao(DaoType.BOOKINGDAO);
+    Boolean isOverDue;
     @Override
     public boolean saveBooking(BookingDto bookingDto) throws SQLException {
 
@@ -36,9 +37,10 @@ public class BookingBoImpl implements BookingBo {
     private Integer getTotal(BookingDto bookingDto) {
 
         try {
-            Integer duration= (int) ChronoUnit.DAYS.between(bookingDto.getStartDat(),bookingDto.getEndDat());
+            Integer duration= (int) ChronoUnit.DAYS.between(bookingDto.getEndDat(),bookingDto.getStartDat());
 
             Integer total= bookingDto.getRate()*duration;
+            isOverDue=true;
             return total;
         } catch (Exception e) {
             new Alert(Alert.AlertType.ERROR,"check the start date and end date").show();

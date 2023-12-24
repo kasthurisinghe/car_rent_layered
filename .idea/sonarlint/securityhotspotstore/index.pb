@@ -80,3 +80,15 @@ e
 5src/main/java/lk/ijse/bussines/custom/CustomerBo.java,8\d\8d8b773b28320a9df3073e825cc6a2b87b94a5f2
 n
 >src/main/java/lk/ijse/bussines/custom/impl/CustomerBoImpl.java,3\0\302f7ba6493a71de16b4f697bcb785cde6696c24
+l
+<src/main/java/lk/ijse/bussines/custom/impl/ReturnBoImpl.java,4\c\4c62b7f02cf5b7e2e6de2c7e2d9b9aefcdb429b5
+c
+3src/main/java/lk/ijse/bussines/custom/ReturnBo.java,a\d\ad847d7067100eb6e7c21fc3f7724d6f09e089cc
+X
+(src/main/java/lk/ijse/dto/ReturnDto.java,c\f\cf248179ca8c82171b95ceadaf10e8800a5689ca
+^
+.src/main/java/lk/ijse/entity/ReturnEntity.java,6\6\66142298f178e8d1e89d37ee6b1ac39813ed0bd5
+_
+/src/main/java/lk/ijse/dao/custom/ReturnDao.java,7\a\7af583cce4a5db8524a2597b2681ad8890c37627
+h
+8src/main/java/lk/ijse/dao/custom/impl/RetornDaoImpl.java,3\c\3c75eac24aa9a32ea84561d1ca63f07bbc3eaf08

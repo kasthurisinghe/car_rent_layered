@@ -1,10 +1,7 @@
 package lk.ijse.bussines;
 
 
-import lk.ijse.bussines.custom.impl.BookingBoImpl;
-import lk.ijse.bussines.custom.impl.CreateUserBoImpl;
-import lk.ijse.bussines.custom.impl.CustomerBoImpl;
-import lk.ijse.bussines.custom.impl.LoginBoImpl;
+import lk.ijse.bussines.custom.impl.*;
 import lk.ijse.dao.custom.impl.CustomerDaoImpl;
 
 public class FactoryBo {
@@ -22,6 +19,10 @@ public class FactoryBo {
 
             case CUSTOMERBO:
                 return (T) new CustomerBoImpl();
+
+            case RETURNBO:
+                return (T) new ReturnBoImpl();
+
             default :
                 return null;
         }
