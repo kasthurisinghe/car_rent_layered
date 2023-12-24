@@ -48,31 +48,51 @@ public class ReturnVehicle {
             Boolean isReturned=returnBoImpl.acceptReturn(booId,isReturne);
             if (isReturned){
                 new Alert(Alert.AlertType.CONFIRMATION,"Vehicle return Accepted").show();
+                clearFields();
             }
         } catch (Exception e) {
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
     }
 
+    private void clearFields() {
+        txtBookingId.setText("");
+        OverDue.setText("");
+        dueDate.setValue(null);
+        custId.setText("");
+        custName.setText("");
+        panelty.setText("");
+        total.setText("");
+        vehicleRegNo.setText("");
+    }
 
 
-    public void btnCheckClickOnAction(ActionEvent actionEvent) {
+    public void btnCheckClickOnAction(ActionEvent actionEvent) throws SQLException {
         String bookId=txtBookingId.getText();
         LocalDate duDate=dueDate.getValue();
 
-        try {
-        ReturnDto returnDto= returnBoImpl.findRental(bookId,duDate);
+//        try {
+        if (bookId!="" && duDate!=null) {
+            ReturnDto returnDto= returnBoImpl.findRental(bookId,duDate);
 
-        txtBookingId.setText(returnDto.getBookingId());
-        custId.setText(returnDto.getCustId());
-        OverDue.setText(returnDto.getIsOverDue());
-        custName.setText(returnDto.getCustName());
-        vehicleRegNo.setText(returnDto.getVehiRegNo());
-        panelty.setText(String.valueOf(returnDto.getPanelty()));
-        total.setText(String.valueOf(returnDto.getTotal()));
+            if (returnDto!=null) {
+                txtBookingId.setText(returnDto.getBookingId());
+                custId.setText(returnDto.getCustId());
+                OverDue.setText(returnDto.getIsOverDue());
+                custName.setText(returnDto.getCustName());
+                vehicleRegNo.setText(returnDto.getVehiRegNo());
+                panelty.setText(String.valueOf(returnDto.getPanelty()));
+                total.setText(String.valueOf(returnDto.getTotal()));
+            }else {
+                msgTxr.setText("The vehicle of the booking '"+bookId+"' has been returned ");
+            }
 
-        } catch (Exception e) {
-            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+//        } catch (Exception e) {
+//            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+//        }
+        }
+        else {
+            msgTxr.setText("Give the booking Id and today date");
         }
     }
 }

@@ -20,20 +20,21 @@ public class ReturnBoImpl implements ReturnBo {
     public ReturnDto findRental(String bookId, LocalDate today) throws SQLException {
 
         ReturnEntity returnEntity=returnDaoImpl.findRental(bookId);
-        int duration=getDuration(today,returnEntity.getEndDate());
-         Integer panelty=0;
-         String isOverDue;
+        if (returnEntity!=null) {
+            int duration=getDuration(today,returnEntity.getEndDate());
+            Integer panelty=0;
+            String isOverDue;
 
-        if (duration<0){
-            total=returnEntity.getCharge();
-            isOverDue="No";
-        }else {
-            System.out.println(duration);
-            panelty=duration*1200;
-            isOverDue="Yes";
-            total=(returnEntity.getCharge())+panelty;
-        }
-        return new ReturnDto(
+            if (duration<0){
+                total=returnEntity.getCharge();
+                isOverDue="No";
+            }else {
+                System.out.println(duration);
+                panelty=duration*1200;
+                isOverDue="Yes";
+                total=(returnEntity.getCharge())+panelty;
+            }
+            return new ReturnDto(
                 returnEntity.getBookingID(),
                 returnEntity.getCustId(),
                 isOverDue,
@@ -41,8 +42,10 @@ public class ReturnBoImpl implements ReturnBo {
                 returnEntity.getVehiRegnNo(),
                 panelty,
                 total
-        );
-
+            );
+        }else {
+            return null;
+        }
     }
 
     @Override

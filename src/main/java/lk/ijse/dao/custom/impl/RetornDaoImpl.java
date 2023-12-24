@@ -30,31 +30,36 @@ public class RetornDaoImpl implements ReturnDao {
                 LocalDate endD= resultSet.getDate(5).toLocalDate();
                 String booId=resultSet.getString(6);
                 Integer toPrice=resultSet.getInt(7);
+                Boolean returned=resultSet.getBoolean(8);
 
-                String sqlCust="SELECT*FROM customer WHERE Customer_ID=?";
-                PreparedStatement pstmCust=connection.prepareStatement(sqlCust);
-                pstmCust.setString(1,custId);
-                ResultSet resultSetCus= pstmCust.executeQuery();
+                if (!returned) {
+                    String sqlCust="SELECT*FROM customer WHERE Customer_ID=?";
+                    PreparedStatement pstmCust=connection.prepareStatement(sqlCust);
+                    pstmCust.setString(1,custId);
+                    ResultSet resultSetCus= pstmCust.executeQuery();
 
-                if (resultSetCus.next()){
-                    String custName= resultSet.getString(2);
+                    if (resultSetCus.next()){
+                        String custName= resultSet.getString(2);
 
-                    String sqlCar="SELECT*FROM car_details where ID_no=?";
-                    PreparedStatement pstmCar=connection.prepareStatement(sqlCar);
-                    pstmCar.setString(1,carId);
-                    ResultSet resultSetCar=pstmCar.executeQuery();
+                        String sqlCar="SELECT*FROM car_details where ID_no=?";
+                        PreparedStatement pstmCar=connection.prepareStatement(sqlCar);
+                        pstmCar.setString(1,carId);
+                        ResultSet resultSetCar=pstmCar.executeQuery();
 
-                    if (resultSetCar.next()){
-                        String vehiRegNo= resultSetCar.getString(1);
+                        if (resultSetCar.next()){
+                            String vehiRegNo= resultSetCar.getString(1);
 
-                        return new ReturnEntity(
-                                booId,endD,custId,custName,vehiRegNo,toPrice
-                        );
+                            return new ReturnEntity(
+                                    booId,endD,custId,custName,vehiRegNo,toPrice
+                            );
+                        }else {
+                            System.out.println("car case");
+                        }
                     }else {
-                        System.out.println("car case");
+                        System.out.println("customr case");
                     }
                 }else {
-                    System.out.println("customr case");
+                    return null;
                 }
             } return null;
     }
@@ -65,7 +70,7 @@ public class RetornDaoImpl implements ReturnDao {
         String sql="UPDATE booking_details SET is_returned = ? WHERE booking_id=?";
         PreparedStatement preparedStatement =connection.prepareStatement(sql);
 
-        preparedStatement.setString(1, String.valueOf(isReturned));
+        preparedStatement.setBoolean(1, (isReturned));
         preparedStatement.setString(2,booId);
         if (preparedStatement.executeUpdate()>0){
             return true;

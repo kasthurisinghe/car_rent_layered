@@ -24,7 +24,7 @@ public class BookingDaoImpl implements BookingDao {
         pstm.setDate(5, Date.valueOf(bookingEntity.getEndDat()));
         pstm.setString(6,bookingEntity.getBookingId());
         pstm.setInt(7,bookingEntity.getTotal());
-        pstm.setBoolean(8,bookingEntity.getIsReturned());
+        pstm.setBoolean(8,false);
 
         return pstm.executeUpdate()>0;
     }
