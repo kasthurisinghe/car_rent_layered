@@ -8,12 +8,11 @@ import javafx.scene.control.*;
 import lk.ijse.bussines.BoType;
 import lk.ijse.bussines.FactoryBo;
 import lk.ijse.bussines.custom.CarBo;
-import lk.ijse.bussines.custom.impl.CarBoImpl;
+
 import lk.ijse.dto.CarDto;
-import lk.ijse.entity.CarEntity;
+
 
 import java.sql.SQLException;
-import java.util.List;
 
 public class CarDetails {
     @FXML
@@ -47,6 +46,7 @@ public class CarDetails {
 
     @FXML
     void bntDeleteClickOnAction(ActionEvent event) throws SQLException {
+        notifyMsg.setText("");
         String id=VehiIdNo.getText();
 
         Boolean isDeleted=carBoIpml.deleteCar(id);
@@ -61,6 +61,7 @@ public class CarDetails {
 
     @FXML
     void btnDetailsCliskOnAction(ActionEvent event) throws SQLException {
+        notifyMsg.setText("");
         String id=VehiIdNo.getText();
 
         CarDto carDto=carBoIpml.chekcCar(id);
@@ -96,6 +97,7 @@ public class CarDetails {
 
     @FXML
     void btnRegsterClickOnAction(ActionEvent event) throws SQLException {
+        notifyMsg.setText("");
         try {
             String id=VehiIdNo.getText();
             String reg=regNo.getText();
@@ -104,15 +106,24 @@ public class CarDetails {
             String brand= txtBrand.getText();
             String type= (String) typeComb.getValue();
 
-            CarDto carDto=new CarDto(reg,id,modle,brand,colour,type);
+            if (!id.isEmpty() && !reg.isEmpty() && !modle.isEmpty() && !colour.isEmpty()&& !brand.isEmpty() && !type.isEmpty()) {
+                if (carBoIpml.chekcCar(id)==null) {
+                    CarDto carDto=new CarDto(reg,id,modle,brand,colour,type);
 
-            Boolean isSaved=carBoIpml.saveCar(carDto);
-            if (isSaved){
-                new Alert(Alert.AlertType.CONFIRMATION,"Car details are saved successfully").show();
-                clearFields();
+                    Boolean isSaved=carBoIpml.saveCar(carDto);
+                    if (isSaved){
+                        new Alert(Alert.AlertType.CONFIRMATION,"Car details are saved successfully").show();
+                        clearFields();
+                    }
+                    else{
+                        new Alert(Alert.AlertType.ERROR, "Recheck the details that you have entered").show();
+                    }
+                }else {
+                    notifyMsg.setText("The car ID number that you have entered is already exist, please use a new car ID number ");
+                }
             }
-            else{
-                new Alert(Alert.AlertType.ERROR, "Recheck the details that you have entered").show();
+            else {
+                notifyMsg.setText("Please give all the details regarding to the car details");
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
@@ -121,6 +132,8 @@ public class CarDetails {
 
     @FXML
     void btnUpdateClickOnAction(ActionEvent event) throws SQLException {
+        notifyMsg.setText("");
+
         String id=VehiIdNo.getText();
         String reg=regNo.getText();
         String modle=txtModle.getText();
