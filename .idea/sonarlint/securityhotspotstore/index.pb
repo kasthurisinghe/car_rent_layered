@@ -92,3 +92,7 @@ _
 /src/main/java/lk/ijse/dao/custom/ReturnDao.java,7\a\7af583cce4a5db8524a2597b2681ad8890c37627
 h
 8src/main/java/lk/ijse/dao/custom/impl/RetornDaoImpl.java,3\c\3c75eac24aa9a32ea84561d1ca63f07bbc3eaf08
+j
+:src/main/java/lk/ijse/entity/tm/TabulateBookingEntity.java,2\2\224eb98234605782dc0f6f8ca35494782d669c91
+[
++src/main/java/lk/ijse/dto/tm/BookingTm.java,a\2\a2b974038cce7a99d0d4001dd04dfdfb65855732

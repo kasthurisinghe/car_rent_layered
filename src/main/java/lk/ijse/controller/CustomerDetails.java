@@ -74,13 +74,18 @@ public class CustomerDetails {
     void btnDeleteOnAction(ActionEvent event) {
         String cusId=custId.getText();
 
-        try {
-            boolean isDeleted=customerBoImpl.deleteCustomer(cusId);
-            if (isDeleted){
-                new Alert(Alert.AlertType.CONFIRMATION,"Customer deleted successfully").show();
+        if (cusId!="") {
+            try {
+                boolean isDeleted=customerBoImpl.deleteCustomer(cusId);
+                if (isDeleted){
+                    new Alert(Alert.AlertType.CONFIRMATION,"Customer deleted successfully").show();
+                    clearFields();
+                }
+            } catch (Exception e) {
+                new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
             }
-        } catch (Exception e) {
-            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+        }else {
+            new Alert(Alert.AlertType.ERROR,"please enter a valid customer ID here").show();
         }
 
     }
@@ -146,7 +151,7 @@ public class CustomerDetails {
             try {
                 Boolean isSaved=customerBoImpl.updateCustomer(customerDto);
                 if (isSaved){
-                    new Alert(Alert.AlertType.CONFIRMATION,"Customer iupdated successfully").show();
+                    new Alert(Alert.AlertType.CONFIRMATION,"Customer is updated successfully").show();
                     clearFields();
                 }
             } catch (Exception e) {

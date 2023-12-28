@@ -1,11 +1,15 @@
 package lk.ijse.controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+
+import java.util.List;
 
 public class CarDetails {
     @FXML
@@ -36,10 +40,16 @@ public class CarDetails {
     private TextField txtModle;
 
     @FXML
-    private ComboBox<?> typeComb;
+    private ComboBox typeComb;
 
     @FXML
     private Button updateButton;
+    public void initialize(){
+        ObservableList<String> listTypeVehi= FXCollections.observableArrayList("Sedan", "Hatchback", "Sport", "Convertible");
+
+        typeComb.setItems(listTypeVehi);
+
+    }
 
     @FXML
     void bntDeleteClickOnAction(ActionEvent event) {

@@ -2,12 +2,12 @@ package lk.ijse.dao.custom.impl;
 
 import lk.ijse.dao.custom.BookingDao;
 import lk.ijse.db.DbConnection;
-import lk.ijse.dto.BookingDto;
 import lk.ijse.entity.BookingEntity;
 
 import java.sql.*;
 import java.time.LocalDate;
-import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BookingDaoImpl implements BookingDao {
     @Override
@@ -95,5 +95,34 @@ public class BookingDaoImpl implements BookingDao {
         if (preparedStatement.executeUpdate()>0){
             return true;
         }return false;
+    }
+
+    @Override
+    public List<BookingEntity> loadTable() throws SQLException {
+        Connection connection=DbConnection.getInstance().getConnection();
+
+        String sql="SELECT* FROM booking_details";
+        PreparedStatement pstm=connection.prepareStatement(sql);
+
+        List <BookingEntity> bookingsListEntity=new ArrayList<>();
+
+
+        ResultSet resultSet= pstm.executeQuery();
+        while (resultSet.next()){
+            String carId= resultSet.getString(1);
+            Integer rate= resultSet.getInt(2);
+            String custId= resultSet.getString(3);
+
+            LocalDate endDate= resultSet.getDate(5).toLocalDate();
+            LocalDate startDate= resultSet.getDate(4).toLocalDate();
+            String bookingId= resultSet.getString(6);
+
+            Integer total= resultSet.getInt(7);
+            Boolean isReturned=resultSet.getBoolean(8);
+
+            BookingEntity bookingEntity=new BookingEntity(carId,rate,custId,endDate,startDate,bookingId,total,isReturned);
+            bookingsListEntity.add(bookingEntity);
+        }
+        return bookingsListEntity;
     }
 }

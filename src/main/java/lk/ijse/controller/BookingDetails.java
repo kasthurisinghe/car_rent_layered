@@ -1,45 +1,39 @@
 package lk.ijse.controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import lk.ijse.bussines.BoType;
 import lk.ijse.bussines.FactoryBo;
 import lk.ijse.bussines.custom.BookingBo;
 import lk.ijse.dto.BookingDto;
+import lk.ijse.dto.tm.BookingTm;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.List;
 
 
 public class BookingDetails {
-    @FXML
-    private Button BtnDelete;
 
     @FXML
-    private Button BtnRent;
-
-    @FXML
-    private Button BtnUpdate;
-
-    @FXML
-    private TableView<?> table;
-
+    private TableView<BookingTm> table;
     @FXML
     private TableColumn<?, ?> tblBookingId;
-
     @FXML
     private TableColumn<?, ?> tblCarId;
-
     @FXML
     private TableColumn<?, ?> tblCustomerId;
-
     @FXML
-    private TableColumn<?, ?> tblDate;
-
+    private TableColumn<?, ?> tblStartDate;
+    @FXML
+    private TableColumn<?, ?> tblEndDate;
     @FXML
     private TableColumn<?, ?> tblRate;
-
     @FXML
     private TableColumn<?, ?> tblTotalPrice;
 
@@ -60,6 +54,47 @@ public class BookingDetails {
     private DatePicker startDate;
 
     BookingBo bookingBoImpl=FactoryBo.getBo(BoType.BOOKINGBO);
+    public void initialize() throws SQLException {
+        setCellValueFactory();
+        List <BookingDto> bookingDtos=bookingloadAllBookings();
+
+        setTableData(bookingDtos);
+
+    }
+
+    private void setTableData(List<BookingDto> bookingDtos) {
+        ObservableList<BookingTm> objects= FXCollections.observableArrayList();
+
+        for (BookingDto bookingDto: bookingDtos){
+            var tm = new BookingTm(
+                    bookingDto.getBookingId(),
+                    bookingDto.getCarId(),
+                    bookingDto.getCustId(),
+                    bookingDto.getStartDat(),
+                    bookingDto.getEndDat(),
+                    bookingDto.getRate(),
+                    (int) (bookingDto.getRate() * (ChronoUnit.DAYS.between(bookingDto.getStartDat(), bookingDto.getEndDat())))
+            );
+            objects.add(tm);
+            table.setItems(objects);
+        }
+    }
+
+    private List<BookingDto> bookingloadAllBookings() throws SQLException {
+            return bookingBoImpl.getTableData();
+    }
+
+    private void setCellValueFactory() {
+        tblBookingId.setCellValueFactory(new PropertyValueFactory<>("bookingId"));
+        tblCarId.setCellValueFactory(new PropertyValueFactory<>("carId"));
+        tblCustomerId.setCellValueFactory(new PropertyValueFactory<>("custId"));
+        tblStartDate.setCellValueFactory(new PropertyValueFactory<>("startDate"));
+        tblEndDate.setCellValueFactory(new PropertyValueFactory<>("endDate"));
+        tblRate.setCellValueFactory(new PropertyValueFactory<>("rate"));
+        tblTotalPrice.setCellValueFactory(new PropertyValueFactory<>("total"));
+
+    }    
+
     @FXML
     void btnDeleteClickOnAction(ActionEvent event) {
         try {
@@ -67,7 +102,7 @@ public class BookingDetails {
 
             Boolean isDeleted=bookingBoImpl.deleteBooking(bId);
             if (isDeleted){
-                new Alert(Alert.AlertType.CONFIRMATION, "successfully deleted").show();
+                new Alert(Alert.AlertType.CONFIRMATION, "Successfully deleted").show();
             }
         } catch (Exception e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
@@ -85,17 +120,21 @@ public class BookingDetails {
         LocalDate endDat=endDate.getValue();
         LocalDate startDat=startDate.getValue();
 
-
-
             if (!bookingId.equals("") && !carId.equals("") &&  !custId.equals("") && !txtRate.getText().equals("") ) {
                 try {
-                    Integer rate= Integer.valueOf(txtRate.getText());
-                    BookingDto bookingDto=new BookingDto(bookingId,carId,rate,custId,startDat,endDat,isReturned);
-                    boolean isSaved= bookingBoImpl.saveBooking(bookingDto);
+                    if (isDuration(startDat,endDat)) {
+                        Integer rate= Integer.valueOf(txtRate.getText());
+                        BookingDto bookingDto=new BookingDto(bookingId,carId,rate,custId,startDat,endDat,isReturned);
+                        boolean isSaved= bookingBoImpl.saveBooking(bookingDto);
 
-                    if (isSaved){
-                        new Alert(Alert.AlertType.INFORMATION, "Booking details saved successfully").show();
-                        clearFields();
+                        if (isSaved){
+                            new Alert(Alert.AlertType.INFORMATION, "Booking details saved successfully").show();
+                            clearFields();
+                        }
+                    }else {
+                        new Alert(Alert.AlertType.WARNING,"The duration of the rental should be less than 30 days").show();
+                        startDate.setValue(null);
+                        endDate.setValue(null);
                     }
                 } catch (NumberFormatException e) {
                     new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
@@ -128,16 +167,31 @@ public class BookingDetails {
             String custId=TxtCustomerId.getText();
             LocalDate startDa=startDate.getValue();
             LocalDate endDa=endDate.getValue();
-            BookingDto bookingDto=new BookingDto(bId,carId,rate,custId,startDa,endDa,isReturned);
-            Boolean isUpdated=bookingBoImpl.updateBooking(bookingDto);
-            if (isUpdated){
-                new Alert(Alert.AlertType.CONFIRMATION,"Booking updated successfully").show();
-                clearFields();
+            if (isDuration(startDa,endDa)) {
+                BookingDto bookingDto=new BookingDto(bId,carId,rate,custId,startDa,endDa,isReturned);
+                Boolean isUpdated=bookingBoImpl.updateBooking(bookingDto);
+                if (isUpdated){
+                    new Alert(Alert.AlertType.CONFIRMATION,"Booking updated successfully").show();
+                    clearFields();
+                }
+            }else {
+                new Alert(Alert.AlertType.WARNING,"The duration of the rental should be less than 30 days").show();
+                startDate.setValue(null);
+                endDate.setValue(null);
             }
         } catch (NumberFormatException | SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
 
+    }
+
+    private boolean isDuration(LocalDate startDa, LocalDate endDa) {
+        Integer duration= Math.toIntExact(ChronoUnit.DAYS.between(startDa, endDa));
+        if (duration<30){
+            System.out.println(duration);
+            return true;
+        }
+        return false;
     }
 
     @FXML

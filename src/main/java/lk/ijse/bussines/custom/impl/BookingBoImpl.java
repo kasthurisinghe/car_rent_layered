@@ -11,6 +11,8 @@ import lk.ijse.entity.BookingEntity;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BookingBoImpl implements BookingBo {
     BookingDao bookingDaoImpl= DaoFactory.getDao(DaoType.BOOKINGDAO);
@@ -81,5 +83,28 @@ public class BookingBoImpl implements BookingBo {
     @Override
     public Boolean deleteBooking(String bId) throws SQLException {
         return bookingDaoImpl.deleteBooking(bId);
+    }
+
+    @Override
+    public List<BookingDto> getTableData() throws SQLException {
+        List<BookingEntity> bookingslistEntity=  bookingDaoImpl.loadTable();
+
+        List<BookingDto>bookingsListDto=new ArrayList<>();
+
+        if (bookingslistEntity!=null){
+            for (BookingEntity bookingEntity:bookingslistEntity){
+                String bookId=bookingEntity.getBookingId();
+                String carId=bookingEntity.getCarId();
+                Integer rate=bookingEntity.getRate();
+                String custId=bookingEntity.getCustId();
+                LocalDate endDate=bookingEntity.getEndDat();
+                LocalDate startDate=bookingEntity.getStartDat();
+                Boolean isReturned=bookingEntity.getIsReturned();
+                BookingDto bookingDto=new BookingDto(bookId,carId,rate,custId,endDate,startDate,isReturned);
+                bookingsListDto.add(bookingDto);
+            }
+            return bookingsListDto;
+        }
+        return null;
     }
 }
