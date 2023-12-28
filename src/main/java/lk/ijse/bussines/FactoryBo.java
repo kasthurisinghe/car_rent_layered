@@ -23,6 +23,9 @@ public class FactoryBo {
             case RETURNBO:
                 return (T) new ReturnBoImpl();
 
+            case CARBO:
+                return (T) new CarBoImpl();
+
             default :
                 return null;
         }

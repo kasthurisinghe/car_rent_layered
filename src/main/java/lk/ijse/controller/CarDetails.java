@@ -4,11 +4,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import lk.ijse.bussines.BoType;
+import lk.ijse.bussines.FactoryBo;
+import lk.ijse.bussines.custom.CarBo;
+import lk.ijse.bussines.custom.impl.CarBoImpl;
+import lk.ijse.dto.CarDto;
+import lk.ijse.entity.CarEntity;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class CarDetails {
@@ -16,19 +20,10 @@ public class CarDetails {
     private TextField VehiIdNo;
 
     @FXML
-    private Button checkVehiButton;
-
-    @FXML
-    private Button deleteButton;
-
-    @FXML
     private Label notifyMsg;
 
     @FXML
     private TextField regNo;
-
-    @FXML
-    private Button registerButton;
 
     @FXML
     private TextField txtBrand;
@@ -42,8 +37,7 @@ public class CarDetails {
     @FXML
     private ComboBox typeComb;
 
-    @FXML
-    private Button updateButton;
+    private CarBo carBoIpml= FactoryBo.getBo(BoType.CARBO);
     public void initialize(){
         ObservableList<String> listTypeVehi= FXCollections.observableArrayList("Sedan", "Hatchback", "Sport", "Convertible");
 
@@ -52,22 +46,96 @@ public class CarDetails {
     }
 
     @FXML
-    void bntDeleteClickOnAction(ActionEvent event) {
+    void bntDeleteClickOnAction(ActionEvent event) throws SQLException {
+        String id=VehiIdNo.getText();
+
+        Boolean isDeleted=carBoIpml.deleteCar(id);
+        if (isDeleted){
+            new Alert(Alert.AlertType.CONFIRMATION,"Deletion is successfull").show();
+            clearFields();
+        }else {
+            new Alert(Alert.AlertType.ERROR,"Error in deletion of car detalis").show();
+        }
 
     }
 
     @FXML
-    void btnDetailsCliskOnAction(ActionEvent event) {
+    void btnDetailsCliskOnAction(ActionEvent event) throws SQLException {
+        String id=VehiIdNo.getText();
 
+        CarDto carDto=carBoIpml.chekcCar(id);
+
+        try {
+            if (carDto!=null) {
+                VehiIdNo.setText(carDto.getId());
+                regNo.setText(carDto.getRegNo());
+                txtModle.setText(carDto.getModle());
+                txtBrand.setText(carDto.getBrand());
+                txtColour.setText(carDto.getColour());
+                VehiIdNo.setText(carDto.getId());
+                typeComb.setValue(carDto.getType());
+            }else {
+                notifyMsg.setText("The ID that you have entered is not valid");
+                clearFields();
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void clearFields() {
+        VehiIdNo.setText("");
+        regNo.setText("");
+        txtModle.setText("");
+        txtBrand.setText("");
+        txtColour.setText("");
+        VehiIdNo.setText("");
+        typeComb.setValue(null);
+    }
+
+
+    @FXML
+    void btnRegsterClickOnAction(ActionEvent event) throws SQLException {
+        try {
+            String id=VehiIdNo.getText();
+            String reg=regNo.getText();
+            String modle=txtModle.getText();
+            String colour=txtColour.getText();
+            String brand= txtBrand.getText();
+            String type= (String) typeComb.getValue();
+
+            CarDto carDto=new CarDto(reg,id,modle,brand,colour,type);
+
+            Boolean isSaved=carBoIpml.saveCar(carDto);
+            if (isSaved){
+                new Alert(Alert.AlertType.CONFIRMATION,"Car details are saved successfully").show();
+                clearFields();
+            }
+            else{
+                new Alert(Alert.AlertType.ERROR, "Recheck the details that you have entered").show();
+            }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+        }
     }
 
     @FXML
-    void btnRegsterClickOnAction(ActionEvent event) {
+    void btnUpdateClickOnAction(ActionEvent event) throws SQLException {
+        String id=VehiIdNo.getText();
+        String reg=regNo.getText();
+        String modle=txtModle.getText();
+        String colour=txtColour.getText();
+        String brand= txtBrand.getText();
+        String type= (String) typeComb.getValue();
 
-    }
-
-    @FXML
-    void btnUpdateClickOnAction(ActionEvent event) {
+        CarDto carDto=new CarDto(reg,id,modle,brand,colour,type);
+        Boolean isUpdated=carBoIpml.updateCar(carDto);
+        if (isUpdated){
+            new Alert(Alert.AlertType.CONFIRMATION,"Car details successfully updated").show();
+            clearFields();
+        }else {
+            new Alert(Alert.AlertType.ERROR,"Error occurred in car detail update").show();
+        }
 
     }
 

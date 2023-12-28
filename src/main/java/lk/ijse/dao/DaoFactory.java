@@ -3,10 +3,7 @@ package lk.ijse.dao;
 import lk.ijse.bussines.BoType;
 import lk.ijse.bussines.custom.impl.BookingBoImpl;
 import lk.ijse.dao.custom.Userdao;
-import lk.ijse.dao.custom.impl.BookingDaoImpl;
-import lk.ijse.dao.custom.impl.CreateUserDaoImpl;
-import lk.ijse.dao.custom.impl.CustomerDaoImpl;
-import lk.ijse.dao.custom.impl.RetornDaoImpl;
+import lk.ijse.dao.custom.impl.*;
 
 public class DaoFactory {
         public  static <T>T  getDao(DaoType type){
@@ -20,6 +17,8 @@ public class DaoFactory {
 
                 case RETURNDAO:
                     return (T) new RetornDaoImpl();
+                case CARDAO:
+                    return (T) new CarDaoImpl();
                 default:
                     return null;
             }
