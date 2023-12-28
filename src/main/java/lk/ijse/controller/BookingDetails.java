@@ -10,7 +10,7 @@ import lk.ijse.bussines.BoType;
 import lk.ijse.bussines.FactoryBo;
 import lk.ijse.bussines.custom.BookingBo;
 import lk.ijse.dto.BookingDto;
-import lk.ijse.dto.tm.BookingTm;
+import lk.ijse.dto.tm.BookingDtoTm;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -21,7 +21,7 @@ import java.util.List;
 public class BookingDetails {
 
     @FXML
-    private TableView<BookingTm> table;
+    private TableView<BookingDtoTm> table;
     @FXML
     private TableColumn<?, ?> tblBookingId;
     @FXML
@@ -56,31 +56,32 @@ public class BookingDetails {
     BookingBo bookingBoImpl=FactoryBo.getBo(BoType.BOOKINGBO);
     public void initialize() throws SQLException {
         setCellValueFactory();
-        List <BookingDto> bookingDtos=bookingloadAllBookings();
+        List <BookingDtoTm> bookingDtos=bookingloadAllBookings();
 
         setTableData(bookingDtos);
 
     }
 
-    private void setTableData(List<BookingDto> bookingDtos) {
-        ObservableList<BookingTm> objects= FXCollections.observableArrayList();
+    private void setTableData(List<BookingDtoTm> bookingDtos) {
+        ObservableList<BookingDtoTm> objects= FXCollections.observableArrayList();
 
-        for (BookingDto bookingDto: bookingDtos){
-            var tm = new BookingTm(
+        for (BookingDtoTm bookingDto: bookingDtos){
+            var tm = new BookingDtoTm(
                     bookingDto.getBookingId(),
                     bookingDto.getCarId(),
                     bookingDto.getCustId(),
-                    bookingDto.getStartDat(),
-                    bookingDto.getEndDat(),
+                    bookingDto.getStartDate(),
+                    bookingDto.getEndDate(),
                     bookingDto.getRate(),
-                    (int) (bookingDto.getRate() * (ChronoUnit.DAYS.between(bookingDto.getStartDat(), bookingDto.getEndDat())))
+                    bookingDto.getTotal()
+
             );
             objects.add(tm);
             table.setItems(objects);
         }
     }
 
-    private List<BookingDto> bookingloadAllBookings() throws SQLException {
+    private List<BookingDtoTm> bookingloadAllBookings() throws SQLException {
             return bookingBoImpl.getTableData();
     }
 
@@ -213,9 +214,9 @@ public class BookingDetails {
             endDate.setValue(bookingDto.getEndDat());
             txtBookingId.setText(bookingDto.getBookingId());
             if (bookingDto.getIsReturned()) {
-                msgLab.setText("vehicle is not returned yet");
+                msgLab.setText("vehicle is returned.");
             }else {
-                msgLab.setText("vehicle is returned");
+                msgLab.setText("vehicle is not returned yet");
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();

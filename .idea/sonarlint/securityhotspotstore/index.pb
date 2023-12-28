@@ -96,3 +96,15 @@ j
 :src/main/java/lk/ijse/entity/tm/TabulateBookingEntity.java,2\2\224eb98234605782dc0f6f8ca35494782d669c91
 [
 +src/main/java/lk/ijse/dto/tm/BookingTm.java,a\2\a2b974038cce7a99d0d4001dd04dfdfb65855732
+W
+'src/main/java/lk/ijse/dto/tm/CarTm.java,7\e\7e359a21bf4e9d78f683dae08e2f8cbca6614faf
+]
+-src/main/java/lk/ijse/entity/CarEntityTm.java,6\9\692e027eaf6350ac2eb4874c4747874fc5a48331
+`
+0src/main/java/lk/ijse/entity/tm/CarEntityTm.java,a\b\ab1c5668a1c2bfe5b694a4c8e0a4f79a0fed78ea
+d
+4src/main/java/lk/ijse/entity/tm/BookingEntityTm.java,1\c\1cccdd57b21eb6b2a736cbfe0c1f3e39c8822d44
+^
+.src/main/java/lk/ijse/dto/tm/BookingDtoTm.java,0\4\043ac937082d95495c8dd16d5ce2478a411016bc
+Z
+*src/main/java/lk/ijse/dto/tm/CarDtoTm.java,6\6\665dda4e37cbb53d21e2f8cfdc8c745a6b1de6f0

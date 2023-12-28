@@ -6,7 +6,9 @@ import lk.ijse.dao.DaoFactory;
 import lk.ijse.dao.DaoType;
 import lk.ijse.dao.custom.BookingDao;
 import lk.ijse.dto.BookingDto;
+import lk.ijse.dto.tm.BookingDtoTm;
 import lk.ijse.entity.BookingEntity;
+import lk.ijse.entity.tm.BookingEntityTm;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -86,23 +88,26 @@ public class BookingBoImpl implements BookingBo {
     }
 
     @Override
-    public List<BookingDto> getTableData() throws SQLException {
-        List<BookingEntity> bookingslistEntity=  bookingDaoImpl.loadTable();
+    public List<BookingDtoTm> getTableData() throws SQLException {
+        List<BookingEntityTm> bookingslistEntityTm=  bookingDaoImpl.loadTable();
 
-        List<BookingDto>bookingsListDto=new ArrayList<>();
+        List<BookingDtoTm>bookingsListDto=new ArrayList<>();
 
-        if (bookingslistEntity!=null){
-            for (BookingEntity bookingEntity:bookingslistEntity){
+        if (bookingslistEntityTm!=null){
+            for (BookingEntityTm bookingEntity:bookingslistEntityTm){
+
                 String bookId=bookingEntity.getBookingId();
                 String carId=bookingEntity.getCarId();
                 Integer rate=bookingEntity.getRate();
                 String custId=bookingEntity.getCustId();
                 LocalDate endDate=bookingEntity.getEndDat();
                 LocalDate startDate=bookingEntity.getStartDat();
-                Boolean isReturned=bookingEntity.getIsReturned();
-                BookingDto bookingDto=new BookingDto(bookId,carId,rate,custId,endDate,startDate,isReturned);
+                Integer total=(int) (bookingEntity.getRate() * (ChronoUnit.DAYS.between(bookingEntity.getStartDat(), bookingEntity.getEndDat())));
+
+                BookingDtoTm bookingDto=new BookingDtoTm(bookId,carId,custId,endDate,startDate,rate,total);
                 bookingsListDto.add(bookingDto);
             }
+
             return bookingsListDto;
         }
         return null;

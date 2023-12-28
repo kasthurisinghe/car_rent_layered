@@ -1,6 +1,7 @@
 package lk.ijse.bussines.custom;
 
 import lk.ijse.dto.BookingDto;
+import lk.ijse.dto.tm.BookingDtoTm;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -15,5 +16,5 @@ public interface BookingBo {
 
     Boolean deleteBooking(String bId) throws SQLException;
 
-    List<BookingDto> getTableData() throws SQLException;
+    List<BookingDtoTm> getTableData() throws SQLException;
 }

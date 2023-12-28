@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class BookingTm {
+public class BookingDtoTm {
     private String bookingId;
     private String carId;
     private String custId;

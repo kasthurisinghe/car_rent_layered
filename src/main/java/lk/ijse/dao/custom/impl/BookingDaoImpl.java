@@ -3,6 +3,7 @@ package lk.ijse.dao.custom.impl;
 import lk.ijse.dao.custom.BookingDao;
 import lk.ijse.db.DbConnection;
 import lk.ijse.entity.BookingEntity;
+import lk.ijse.entity.tm.BookingEntityTm;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -98,13 +99,13 @@ public class BookingDaoImpl implements BookingDao {
     }
 
     @Override
-    public List<BookingEntity> loadTable() throws SQLException {
+    public List<BookingEntityTm> loadTable() throws SQLException {
         Connection connection=DbConnection.getInstance().getConnection();
 
         String sql="SELECT* FROM booking_details";
         PreparedStatement pstm=connection.prepareStatement(sql);
 
-        List <BookingEntity> bookingsListEntity=new ArrayList<>();
+        List <BookingEntityTm> bookingsListEntityTm=new ArrayList<>();
 
 
         ResultSet resultSet= pstm.executeQuery();
@@ -112,17 +113,14 @@ public class BookingDaoImpl implements BookingDao {
             String carId= resultSet.getString(1);
             Integer rate= resultSet.getInt(2);
             String custId= resultSet.getString(3);
-
             LocalDate endDate= resultSet.getDate(5).toLocalDate();
             LocalDate startDate= resultSet.getDate(4).toLocalDate();
             String bookingId= resultSet.getString(6);
-
             Integer total= resultSet.getInt(7);
-            Boolean isReturned=resultSet.getBoolean(8);
 
-            BookingEntity bookingEntity=new BookingEntity(carId,rate,custId,endDate,startDate,bookingId,total,isReturned);
-            bookingsListEntity.add(bookingEntity);
+            BookingEntityTm bookingEntity=new BookingEntityTm(carId,rate,custId,endDate,startDate,bookingId,total);
+            bookingsListEntityTm.add(bookingEntity);
         }
-        return bookingsListEntity;
+        return bookingsListEntityTm;
     }
 }
