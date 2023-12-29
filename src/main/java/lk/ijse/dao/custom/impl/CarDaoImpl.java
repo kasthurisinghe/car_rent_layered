@@ -3,11 +3,15 @@ package lk.ijse.dao.custom.impl;
 import lk.ijse.dao.custom.CarDao;
 import lk.ijse.db.DbConnection;
 import lk.ijse.entity.CarEntity;
+import lk.ijse.entity.tm.BookingEntityTm;
+import lk.ijse.entity.tm.CarEntityTm;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CarDaoImpl implements CarDao {
     @Override
@@ -84,5 +88,28 @@ public class CarDaoImpl implements CarDao {
 
         return preparedStatement.executeUpdate()>0;
 
+    }
+
+    @Override
+    public List<CarEntityTm> getTableData() throws SQLException {
+        Connection connection=DbConnection.getInstance().getConnection();
+        List<CarEntityTm>carEntityTms=new ArrayList<>();
+
+        String sql="SELECT * FROM car_details";
+        PreparedStatement statement=connection.prepareStatement(sql);
+        ResultSet resultSet=statement.executeQuery();
+
+        while (resultSet.next()){
+            String regNo=resultSet.getString(1);
+            String id=resultSet.getString(2);
+            String modle=resultSet.getString(3);
+            String brand=resultSet.getString(4);
+            String colour=resultSet.getString(5);
+            String type=resultSet.getString(6);
+
+            CarEntityTm carEntityTm =new CarEntityTm(regNo,id,modle,brand,colour,type);
+            carEntityTms.add(carEntityTm);
+        }
+        return carEntityTms;
     }
 }

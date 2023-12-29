@@ -7,6 +7,7 @@ import lk.ijse.entity.tm.BookingEntityTm;
 
 import java.sql.*;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -122,5 +123,33 @@ public class BookingDaoImpl implements BookingDao {
             bookingsListEntityTm.add(bookingEntity);
         }
         return bookingsListEntityTm;
+    }
+
+    @Override
+    public Boolean checkBookings(BookingEntity bookingEntity) throws SQLException {
+        String id = bookingEntity.getCarId();
+
+        Connection connection=DbConnection.getInstance().getConnection();
+
+
+        String sql="SELECT*FROM booking_details WHERE booking_id=?";
+
+        PreparedStatement statement=connection.prepareStatement(sql);
+
+        statement.setString(1, bookingEntity.getCarId());
+
+        ResultSet resultSet= statement.executeQuery();
+
+        while (resultSet.next()){
+            LocalDate startDate= resultSet.getDate(4).toLocalDate();
+            LocalDate endDate= resultSet.getDate(5).toLocalDate();
+            if(
+                    (startDate.isBefore(bookingEntity.getStartDat())) && (bookingEntity.getEndDat().isBefore(endDate))||
+                (startDate.isAfter(bookingEntity.getStartDat())) && (bookingEntity.getEndDat().isBefore(endDate))||
+                (startDate.isBefore(bookingEntity.getStartDat())) && (bookingEntity.getEndDat().isAfter(endDate))||
+                (startDate.isAfter(bookingEntity.getStartDat())) && (bookingEntity.getEndDat().isAfter(endDate))){
+                return false;
+            }
+        }return  true;
     }
 }

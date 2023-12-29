@@ -5,9 +5,14 @@ import lk.ijse.dao.DaoFactory;
 import lk.ijse.dao.DaoType;
 import lk.ijse.dao.custom.CarDao;
 import lk.ijse.dto.CarDto;
+import lk.ijse.dto.tm.BookingDtoTm;
+import lk.ijse.dto.tm.CarDtoTm;
 import lk.ijse.entity.CarEntity;
+import lk.ijse.entity.tm.CarEntityTm;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CarBoImpl implements CarBo {
     CarDao carDaoImpl= DaoFactory.getDao(DaoType.CARDAO);
@@ -57,5 +62,28 @@ public class CarBoImpl implements CarBo {
                 );
         Boolean isUpdated=carDaoImpl.carUpdate(carEntity);
         return isUpdated;
+    }
+
+    @Override
+    public List<CarDtoTm> getTableData() throws SQLException {
+        List<CarEntityTm> carEntityTms=carDaoImpl.getTableData();
+
+        List<CarDtoTm>carDtoTms=new ArrayList<>();
+
+        if (carEntityTms!=null){
+            for (CarEntityTm carEntityTm: carEntityTms){
+                CarDtoTm carDtoTm=new CarDtoTm(
+                        carEntityTm.getRegNo(),
+                        carEntityTm.getId(),
+                        carEntityTm.getModle(),
+                        carEntityTm.getBrand(),
+                        carEntityTm.getColour(),
+                        carEntityTm.getType()
+                );
+                carDtoTms.add(carDtoTm);
+            }
+            return  carDtoTms;
+        }
+        return null;
     }
 }

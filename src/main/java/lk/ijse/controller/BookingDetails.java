@@ -74,7 +74,6 @@ public class BookingDetails {
                     bookingDto.getEndDate(),
                     bookingDto.getRate(),
                     bookingDto.getTotal()
-
             );
             objects.add(tm);
             table.setItems(objects);
@@ -89,9 +88,10 @@ public class BookingDetails {
         tblBookingId.setCellValueFactory(new PropertyValueFactory<>("bookingId"));
         tblCarId.setCellValueFactory(new PropertyValueFactory<>("carId"));
         tblCustomerId.setCellValueFactory(new PropertyValueFactory<>("custId"));
-        tblStartDate.setCellValueFactory(new PropertyValueFactory<>("startDate"));
-        tblEndDate.setCellValueFactory(new PropertyValueFactory<>("endDate"));
+        tblEndDate.setCellValueFactory(new PropertyValueFactory<>("startDate"));
+        tblStartDate.setCellValueFactory(new PropertyValueFactory<>("endDate"));
         tblRate.setCellValueFactory(new PropertyValueFactory<>("rate"));
+
         tblTotalPrice.setCellValueFactory(new PropertyValueFactory<>("total"));
 
     }    
@@ -131,6 +131,9 @@ public class BookingDetails {
                         if (isSaved){
                             new Alert(Alert.AlertType.INFORMATION, "Booking details saved successfully").show();
                             clearFields();
+                            initialize();
+                        }else {
+                            msgLab.setText("The booking cannot be proceed because '"+carId+"' car is in a booking on that time.");
                         }
                     }else {
                         new Alert(Alert.AlertType.WARNING,"The duration of the rental should be less than 30 days").show();

@@ -13,7 +13,6 @@ public class CarDtoTm {
     private String modle;
     private String brand;
     private String colour;
-    private String rented;
-
+    private String type;
 
 }

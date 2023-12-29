@@ -34,8 +34,11 @@ public class BookingBoImpl implements BookingBo {
                 getTotal(bookingDto),
                 bookingDto.getIsReturned()
         );
+        Boolean isEnabled=bookingDaoImpl.checkBookings(bookingEntity);
 
-        return bookingDaoImpl.saveBooking(bookingEntity);
+        if (isEnabled) {
+            return bookingDaoImpl.saveBooking(bookingEntity);
+        }return false;
     }
 
     private Integer getTotal(BookingDto bookingDto) {

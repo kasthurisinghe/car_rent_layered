@@ -14,4 +14,6 @@ public interface BookingDao {
 
     Boolean deleteBooking(String bId) throws SQLException;
     List<BookingEntityTm> loadTable() throws SQLException;
+
+    Boolean checkBookings(BookingEntity bookingEntity) throws SQLException;
 }
