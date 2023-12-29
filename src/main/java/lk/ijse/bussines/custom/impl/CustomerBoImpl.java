@@ -4,10 +4,17 @@ import lk.ijse.bussines.custom.CustomerBo;
 import lk.ijse.dao.DaoFactory;
 import lk.ijse.dao.DaoType;
 import lk.ijse.dao.custom.CustomerDao;
+import lk.ijse.db.DbConnection;
 import lk.ijse.dto.CustomerDto;
+import lk.ijse.dto.tm.CustomerDtoTm;
 import lk.ijse.entity.CustomerEntity;
+import lk.ijse.entity.tm.CustomerEntityTm;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CustomerBoImpl implements CustomerBo {
     CustomerDao customerDaoImpl= DaoFactory.getDao(DaoType.CUSTOMERDAO);
@@ -52,7 +59,23 @@ public class CustomerBoImpl implements CustomerBo {
                 customerEntity.getCusNic(),
                 customerEntity.getCusmobile(),
                 customerEntity.getGender()
-
         );
+    }
+    @Override
+    public List<CustomerDtoTm> loadTableData() throws SQLException {
+        List<CustomerEntityTm>customerEntityTms=customerDaoImpl.loadTable();
+
+        List<CustomerDtoTm>customerDtoTms =new ArrayList<>();
+        for (CustomerEntityTm customerEntityTm :customerEntityTms){
+            String custId=customerEntityTm.getCustId();
+            String custName=customerEntityTm.getCustName();
+            String custAdd=customerEntityTm.getCustAddress();
+            String custMobile=customerEntityTm.getCustMobile();
+            String custNic=customerEntityTm.getCustNic();
+            String custGender=customerEntityTm.getCustGender();
+
+            CustomerDtoTm customerDtoTm=new CustomerDtoTm(custId,custName,custAdd,custNic,custMobile,custGender);
+            customerDtoTms.add(customerDtoTm);
+        }return  customerDtoTms;
     }
 }

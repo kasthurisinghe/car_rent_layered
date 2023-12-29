@@ -4,22 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4e7e30b8-a599-4d0e-b739-dd85f33f9e0d" name="Changes" comment="car details form validated">
+    <list default="true" id="4e7e30b8-a599-4d0e-b739-dd85f33f9e0d" name="Changes" comment="car Details table loaded to the UI">
+      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/dto/tm/CustomerDtoTm.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/entity/tm/CustomerEntityTm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/bussines/custom/CarBo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/bussines/custom/CarBo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/bussines/custom/impl/BookingBoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/bussines/custom/impl/BookingBoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/bussines/custom/impl/CarBoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/bussines/custom/impl/CarBoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/BookingDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/BookingDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/CarDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/CarDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/dao/custom/BookingDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/dao/custom/BookingDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/dao/custom/CarDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/dao/custom/CarDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/dao/custom/impl/BookingDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/dao/custom/impl/BookingDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/dao/custom/impl/CarDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/dao/custom/impl/CarDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/dto/tm/CarDtoTm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/dto/tm/CarDtoTm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/entity/tm/CarEntityTm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/entity/tm/CarEntityTm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/view/carDetails.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/carDetails.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/Launcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/Launcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/bussines/custom/CustomerBo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/bussines/custom/CustomerBo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/bussines/custom/impl/CustomerBoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/bussines/custom/impl/CustomerBoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/CustomerDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/CustomerDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/dao/custom/CustomerDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/dao/custom/CustomerDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/dao/custom/impl/CustomerDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/dao/custom/impl/CustomerDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/view/customerDetails.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/customerDetails.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -286,7 +283,15 @@
       <option name="project" value="LOCAL" />
       <updated>1703752309960</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="car Details table loaded to the UI">
+      <option name="closed" value="true" />
+      <created>1703834711319</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1703834711319</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -309,6 +314,7 @@
     <MESSAGE value="booking details table loaded to booking details UI (re-corrected)" />
     <MESSAGE value="all features of Car details UI are enabled" />
     <MESSAGE value="car details form validated" />
-    <option name="LAST_COMMIT_MESSAGE" value="car details form validated" />
+    <MESSAGE value="car Details table loaded to the UI" />
+    <option name="LAST_COMMIT_MESSAGE" value="car Details table loaded to the UI" />
   </component>
 </project>

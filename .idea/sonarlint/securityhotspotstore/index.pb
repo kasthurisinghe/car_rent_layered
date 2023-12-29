@@ -112,3 +112,7 @@ e
 5src/main/java/lk/ijse/dao/custom/impl/CarDaoImpl.java,4\2\4225adc89b98705242d94f3de9a8a5a1284e4876
 U
 %src/main/java/lk/ijse/dto/CarDto.java,3\d\3d4927e0c71ed0231788510af9e986f42471fc9c
+_
+/src/main/java/lk/ijse/dto/tm/CustomerDtoTm.java,6\d\6d6a594522091e0ad666437f34bcbe42dbbb1b42
+e
+5src/main/java/lk/ijse/entity/tm/CustomerEntityTm.java,b\d\bdfcbb2d779adb8bcef46cce88c5da054a7f9304

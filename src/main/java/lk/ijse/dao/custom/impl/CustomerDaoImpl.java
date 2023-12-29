@@ -4,11 +4,14 @@ import lk.ijse.dao.custom.CustomerDao;
 
 import lk.ijse.db.DbConnection;
 import lk.ijse.entity.CustomerEntity;
+import lk.ijse.entity.tm.CustomerEntityTm;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CustomerDaoImpl implements CustomerDao {
     @Override
@@ -90,5 +93,26 @@ public class CustomerDaoImpl implements CustomerDao {
             );
 
         }return  null;
+    }
+
+    @Override
+    public List<CustomerEntityTm> loadTable() throws SQLException {
+        Connection connection=DbConnection.getInstance().getConnection();
+
+        String sql="SELECT*FROM customer";
+        PreparedStatement statement= connection.prepareStatement(sql);
+        List <CustomerEntityTm>customerEntityTms=new ArrayList<>();
+        ResultSet resultSet= statement.executeQuery();
+        while (resultSet.next()){
+            String custId= resultSet.getString(1);
+            String custName= resultSet.getString(2);
+            String custAdd= resultSet.getString(3);
+            String custNic= resultSet.getString(4);
+            String custMobile= resultSet.getString(5);
+            String custGender= resultSet.getString(6);
+            CustomerEntityTm customerEntityTm=new CustomerEntityTm(custId,custName,custAdd,custNic,custMobile,custGender);
+            customerEntityTms.add(customerEntityTm);
+        }
+        return customerEntityTms;
     }
 }
