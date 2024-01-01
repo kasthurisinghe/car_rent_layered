@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4e7e30b8-a599-4d0e-b739-dd85f33f9e0d" name="Changes" comment="all rental details completed">
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/Launcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/Launcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/bussines/custom/impl/AllOverDueBoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/bussines/custom/impl/AllOverDueBoImpl.java" afterDir="false" />
+    <list default="true" id="4e7e30b8-a599-4d0e-b739-dd85f33f9e0d" name="Changes" comment="completed main requirements and developments paused">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -305,7 +304,15 @@
       <option name="project" value="LOCAL" />
       <updated>1704105398527</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="completed main requirements and developments paused">
+      <option name="closed" value="true" />
+      <created>1704105822054</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1704105822054</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -332,6 +339,7 @@
     <MESSAGE value="customer details loaded to the table" />
     <MESSAGE value="cutomer detals UI completed" />
     <MESSAGE value="all rental details completed" />
-    <option name="LAST_COMMIT_MESSAGE" value="all rental details completed" />
+    <MESSAGE value="completed main requirements and developments paused" />
+    <option name="LAST_COMMIT_MESSAGE" value="completed main requirements and developments paused" />
   </component>
 </project>
