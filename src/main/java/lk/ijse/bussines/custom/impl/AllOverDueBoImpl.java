@@ -38,7 +38,7 @@ public class AllOverDueBoImpl implements AllOverDueBo {
 
     private boolean checkOverDue(LocalDate today, LocalDate endDate) {
         Long duration=ChronoUnit.DAYS.between(today, endDate);
-        if (!(duration <0)){
+        if ((duration >0)){
             return true;
         }
         return false;
