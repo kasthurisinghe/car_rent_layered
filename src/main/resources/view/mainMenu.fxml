@@ -2,10 +2,7 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -83,28 +80,7 @@
             </Button>
          </children>
       </GridPane>
-      <AnchorPane fx:id="rootNode1" layoutX="136.0" layoutY="36.0" prefHeight="400.0" prefWidth="600.0">
-         <children>
-            <TableView layoutY="23.0" prefHeight="166.0" prefWidth="600.0">
-              <columns>
-                <TableColumn fx:id="CustId" prefWidth="118.22215270996094" text="Cust; ID" />
-                <TableColumn fx:id="VehiId" prefWidth="121.33335876464844" text="Vehicle ID" />
-                  <TableColumn prefWidth="119.33331298828125" text="Total Price" />
-                  <TableColumn prefWidth="131.77783203125" text="Due Date" />
-                  <TableColumn prefWidth="112.22216796875" text="Over Due?" />
-                  <TableColumn minWidth="0.0" prefWidth="0.0" />
-              </columns>
-            </TableView>
-            <TableView layoutY="223.0" prefHeight="186.0" prefWidth="601.0">
-              <columns>
-                <TableColumn prefWidth="75.0" text="C1" />
-                <TableColumn prefWidth="75.0" text="C2" />
-              </columns>
-            </TableView>
-            <DatePicker layoutX="327.0" layoutY="192.0" />
-            <Label layoutY="196.0" text="Over Due Details :" />
-            <Label layoutX="287.0" layoutY="196.0" text="Label" />
-         </children></AnchorPane>
+      <AnchorPane fx:id="rootNode1" layoutX="136.0" layoutY="36.0" prefHeight="400.0" prefWidth="600.0" />
       <ImageView blendMode="MULTIPLY" fitHeight="120.0" fitWidth="121.0" layoutX="8.0" layoutY="330.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../pics/istockphoto-466931959-612x612.jpg" />

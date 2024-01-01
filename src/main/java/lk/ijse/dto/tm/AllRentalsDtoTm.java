@@ -1,0 +1,21 @@
+package lk.ijse.dto.tm;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.time.LocalDate;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+public class AllRentalsDtoTm {
+    private String custId;
+    private String vehiId;
+    private LocalDate startDate;
+    private LocalDate endDate;
+    private Integer rate;
+    private Integer amount;
+    private String returned;
+
+}

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.AllRentalDetails">
+   <children>
+      <TableView fx:id="tbl" layoutX="-1.0" layoutY="11.0" prefHeight="188.0" prefWidth="611.0">
+         <columns>
+            <TableColumn fx:id="colCustId" prefWidth="81.99997234344482" text="Customer ID" />
+            <TableColumn fx:id="colVehiId" prefWidth="74.6666488647461" text="Vehicle ID" />
+            <TableColumn fx:id="colStart" prefWidth="74.00003051757812" text="Start Date" />
+            <TableColumn fx:id="colEnd" prefWidth="90.00001525878906" text="End Date" />
+            <TableColumn fx:id="colRate" prefWidth="77.33331298828125" text="Rate" />
+            <TableColumn fx:id="colAmount" prefWidth="119.33334350585938" text="Rental Amount" />
+            <TableColumn fx:id="colReturned" prefWidth="90.66664632161462" text="Returned" />
+         </columns>
+      </TableView>
+      <TableView fx:id="overTbl" layoutY="233.0" prefHeight="186.0" prefWidth="611.0">
+         <columns>
+            <TableColumn fx:id="overCust" prefWidth="117.3333387374878" text="Customer ID" />
+            <TableColumn fx:id="overVehicle" prefWidth="144.6666717529297" text="Vehicle ID" />
+            <TableColumn fx:id="overDue" prefWidth="104.66668701171875" text="Should return On" />
+            <TableColumn fx:id="overRate" prefWidth="77.33331298828125" text="Rate" />
+            <TableColumn fx:id="overAmount" prefWidth="163.999989827474" text="Total Amount" />
+         </columns>
+      </TableView>
+      <DatePicker fx:id="txtToday" layoutX="454.0" layoutY="202.0" onAction="#txtClickOnDate" prefHeight="25.0" prefWidth="152.0" />
+      <Label layoutX="10.0" layoutY="206.0" text="Over Due Details :" />
+      <Label layoutX="383.0" layoutY="206.0" prefHeight="17.0" prefWidth="64.0" text="Today Date" />
+      <Label fx:id="msg" layoutX="175.0" layoutY="206.0" prefHeight="17.0" prefWidth="190.0" text="Please select a date for  chek the over dues" textFill="RED">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

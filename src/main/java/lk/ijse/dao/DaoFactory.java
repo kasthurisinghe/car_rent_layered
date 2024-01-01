@@ -19,6 +19,10 @@ public class DaoFactory {
                     return (T) new RetornDaoImpl();
                 case CARDAO:
                     return (T) new CarDaoImpl();
+                case ALLRENTALS:
+                    return (T) new AllRentalDaoImpl();
+                case ALLOVERDUE:
+                    return (T) new AllOverDueDaoImpl();
                 default:
                     return null;
             }

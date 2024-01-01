@@ -38,11 +38,25 @@ public class MainMenu {
 
     @FXML
     private Button vehicleBtn;
+    public void initialize() throws IOException {
+        Parent root= FXMLLoader.load(this.getClass().getResource("/view/allRentalDetails.fxml"));
+
+
+// Clear and set the existing AnchorPane content
+        this.rootNode1.getChildren().clear();
+        this.rootNode1.getChildren().add(root);
+    }
     public void btnExitClickOnAction(ActionEvent actionEvent) {
         Platform.exit();
     }
 
-    public void btnClickOnAllRental(ActionEvent actionEvent) {
+    public void btnClickOnAllRental(ActionEvent actionEvent) throws IOException {
+        Parent root= FXMLLoader.load(this.getClass().getResource("/view/allRentalDetails.fxml"));
+
+
+// Clear and set the existing AnchorPane content
+        this.rootNode1.getChildren().clear();
+        this.rootNode1.getChildren().add(root);
     }
 
     public void btnClickOnCreateCustomerOnAction(ActionEvent actionEvent) throws IOException {
