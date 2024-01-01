@@ -1,8 +1,8 @@
 package lk.ijse.dao.custom;
 
-import lk.ijse.dto.CustomerDto;
 import lk.ijse.entity.CustomerEntity;
 import lk.ijse.entity.tm.CustomerEntityTm;
+import lk.ijse.entity.tm.CustomerRentalEntityTm;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -17,4 +17,6 @@ public interface CustomerDao {
     CustomerEntity findCustomer(String cusId) throws SQLException;
 
     List<CustomerEntityTm> loadTable() throws SQLException;
+
+    List<CustomerRentalEntityTm> loadRentalTable(String custId) throws SQLException;
 }

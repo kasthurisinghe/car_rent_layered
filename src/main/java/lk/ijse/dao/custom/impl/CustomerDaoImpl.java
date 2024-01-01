@@ -5,11 +5,13 @@ import lk.ijse.dao.custom.CustomerDao;
 import lk.ijse.db.DbConnection;
 import lk.ijse.entity.CustomerEntity;
 import lk.ijse.entity.tm.CustomerEntityTm;
+import lk.ijse.entity.tm.CustomerRentalEntityTm;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -114,5 +116,31 @@ public class CustomerDaoImpl implements CustomerDao {
             customerEntityTms.add(customerEntityTm);
         }
         return customerEntityTms;
+    }
+
+    @Override
+    public List<CustomerRentalEntityTm> loadRentalTable(String custId) throws SQLException {
+
+        Connection connection=DbConnection.getInstance().getConnection();;
+
+        String sql="SELECT*FROM booking_details WHERE customer_id=?";
+        PreparedStatement statement=connection.prepareStatement(sql);
+        statement.setString(1,custId);
+
+        ResultSet  resultSet= statement.executeQuery();
+        List<CustomerRentalEntityTm>customerRentalEntityTms=new ArrayList<>();
+
+         while(resultSet.next()){
+             String bookingId=resultSet.getString(6);
+             LocalDate startDate= resultSet.getDate(4).toLocalDate();
+             LocalDate endDate= resultSet.getDate(5).toLocalDate();
+             Integer rate=resultSet.getInt(2);
+             Integer total=resultSet.getInt(7);
+             Boolean returned=resultSet.getBoolean(8);
+
+             CustomerRentalEntityTm customerRentalEntityTm =new CustomerRentalEntityTm(bookingId,startDate,endDate,rate,total,returned);
+customerRentalEntityTms.add(customerRentalEntityTm);
+         }
+         return customerRentalEntityTms;
     }
 }

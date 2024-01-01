@@ -116,3 +116,7 @@ _
 /src/main/java/lk/ijse/dto/tm/CustomerDtoTm.java,6\d\6d6a594522091e0ad666437f34bcbe42dbbb1b42
 e
 5src/main/java/lk/ijse/entity/tm/CustomerEntityTm.java,b\d\bdfcbb2d779adb8bcef46cce88c5da054a7f9304
+e
+5src/main/java/lk/ijse/dto/tm/CustomerRentalDtoTm.java,c\9\c950016f8c635357a840711d2ea64a23fc18f52a
+k
+;src/main/java/lk/ijse/entity/tm/CustomerRentalEntityTm.java,1\d\1d92189517a7f2686afcfb87afbbfce09d3880e4

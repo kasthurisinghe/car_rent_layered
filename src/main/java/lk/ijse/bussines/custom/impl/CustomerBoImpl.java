@@ -4,15 +4,16 @@ import lk.ijse.bussines.custom.CustomerBo;
 import lk.ijse.dao.DaoFactory;
 import lk.ijse.dao.DaoType;
 import lk.ijse.dao.custom.CustomerDao;
-import lk.ijse.db.DbConnection;
 import lk.ijse.dto.CustomerDto;
 import lk.ijse.dto.tm.CustomerDtoTm;
+import lk.ijse.dto.tm.CustomerRentalDtoTm;
 import lk.ijse.entity.CustomerEntity;
 import lk.ijse.entity.tm.CustomerEntityTm;
+import lk.ijse.entity.tm.CustomerRentalEntityTm;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -77,5 +78,41 @@ public class CustomerBoImpl implements CustomerBo {
             CustomerDtoTm customerDtoTm=new CustomerDtoTm(custId,custName,custAdd,custNic,custMobile,custGender);
             customerDtoTms.add(customerDtoTm);
         }return  customerDtoTms;
+    }
+
+    @Override
+    public List<CustomerRentalDtoTm> loadAllCustomerRentals(LocalDate today, String custId) throws SQLException {
+
+        List<CustomerRentalEntityTm>customerRentalEntityTms=customerDaoImpl.loadRentalTable(custId);
+
+        List<CustomerRentalDtoTm>customerRentalDtoTms=new ArrayList<>();
+
+        if (customerRentalEntityTms!=null) {
+            for (CustomerRentalEntityTm customerRentalEntityTm: customerRentalEntityTms){
+                String bookingId=customerRentalEntityTm.getBookingId();
+                LocalDate stratDate=customerRentalEntityTm.getStartDate();
+                LocalDate endDate=customerRentalEntityTm.getEndDate();
+                Integer rate=customerRentalEntityTm.getRate();
+                Integer total=customerRentalEntityTm.getTotal();
+                String overDue="";
+
+                String returned="No";
+                long daysBetween = ChronoUnit.DAYS.between( customerRentalEntityTm.getEndDate(),today);
+                if (customerRentalEntityTm.getReturned()){
+                    returned="Yes";
+                    overDue="Returned";
+                }else {
+                    if (daysBetween<0){
+                        overDue="";
+                    }else {
+                        overDue="Yes";
+                    }
+                }
+
+                CustomerRentalDtoTm customerRentalDtoTm=new CustomerRentalDtoTm(bookingId,stratDate,endDate,rate,overDue,total,returned);
+                customerRentalDtoTms.add(customerRentalDtoTm);
+            }
+            return customerRentalDtoTms;
+        }return null;
     }
 }

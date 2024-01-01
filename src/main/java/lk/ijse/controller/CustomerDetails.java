@@ -9,11 +9,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import lk.ijse.bussines.BoType;
 import lk.ijse.bussines.FactoryBo;
 import lk.ijse.bussines.custom.CustomerBo;
-import lk.ijse.dao.DaoFactory;
-import lk.ijse.dao.DaoType;
-import lk.ijse.dao.custom.CustomerDao;
 import lk.ijse.dto.CustomerDto;
 import lk.ijse.dto.tm.CustomerDtoTm;
+import lk.ijse.dto.tm.CustomerRentalDtoTm;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -21,19 +19,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class CustomerDetails {
-    @FXML
-    private Button btnClear;
-
-    @FXML
-    private Button btnDelete;
-
-    @FXML
-    private Button btnSave;
-
-    @FXML
-    private Button btnUpdate;
-
-
+    public TableColumn colReturned;
+    public DatePicker todayDate;
     @FXML
     private TableColumn<?, ?> colAddres;
     @FXML
@@ -61,7 +48,7 @@ public class CustomerDetails {
     @FXML
     private TableView<CustomerDtoTm> tblCust;
     @FXML
-    private TableView<?> tblRentals;
+    private TableView<CustomerRentalDtoTm> tblRentals;
 
 
     @FXML
@@ -100,9 +87,39 @@ public class CustomerDetails {
         setCellValueFactoryCustomer();
         List<CustomerDtoTm>customerDtoTms =loadAllCustomers();
         setCustomerTableData(customerDtoTms);
-
-//        second table(rental details)
+    }
+    public void dateClickOnAction(ActionEvent actionEvent) throws SQLException {
+        //        second table(rental details)
         setCellValueFactoryRental();
+        List<CustomerRentalDtoTm>customerRentalDtoTms =loadAllCustomerRentals();
+        if (customerRentalDtoTms!=null) {
+            setCustomerRetalTable(customerRentalDtoTms);
+        }else {
+            new Alert(Alert.AlertType.INFORMATION,"The customer "+custId.getText()+" is not registered in bookings").show();
+        }
+    }
+
+    private void setCustomerRetalTable(List<CustomerRentalDtoTm> customerRentalDtoTms) {
+        ObservableList<CustomerRentalDtoTm>RetntalObjects= FXCollections.observableArrayList();
+
+        for(CustomerRentalDtoTm customerRentalDtoTm:customerRentalDtoTms){
+            CustomerRentalDtoTm customerRentalDtoTm1 = new CustomerRentalDtoTm(
+                    customerRentalDtoTm.getBookingId(),
+                    customerRentalDtoTm.getStartDate(),
+                    customerRentalDtoTm.getEndDate(),
+                    customerRentalDtoTm.getRate(),
+                    customerRentalDtoTm.getOverDue(),
+                    customerRentalDtoTm.getTotal(),
+                    customerRentalDtoTm.getReturned()
+            );
+            RetntalObjects.add(customerRentalDtoTm1);
+            tblRentals.setItems(RetntalObjects);
+        }
+    }
+
+    private List<CustomerRentalDtoTm> loadAllCustomerRentals() throws SQLException {
+
+        return customerBoImpl.loadAllCustomerRentals(todayDate.getValue(),custId.getText());
 
     }
 
@@ -128,12 +145,13 @@ public class CustomerDetails {
     }
 
     private void setCellValueFactoryRental() {
-        colBoookingId.setCellValueFactory(new PropertyValueFactory<>(""));
-        colStart.setCellValueFactory(new PropertyValueFactory<>(""));
-        colEnd.setCellValueFactory(new PropertyValueFactory<>(""));
-        colRate.setCellValueFactory(new PropertyValueFactory<>(""));
-        colOverDue.setCellValueFactory(new PropertyValueFactory<>(""));
-        colTotal.setCellValueFactory(new PropertyValueFactory<>(""));
+        colBoookingId.setCellValueFactory(new PropertyValueFactory<>("bookingId"));
+        colStart.setCellValueFactory(new PropertyValueFactory<>("startDate"));
+        colEnd.setCellValueFactory(new PropertyValueFactory<>("endDate"));
+        colRate.setCellValueFactory(new PropertyValueFactory<>("rate"));
+        colOverDue.setCellValueFactory(new PropertyValueFactory<>("overDue"));
+        colTotal.setCellValueFactory(new PropertyValueFactory<>("total"));
+        colReturned.setCellValueFactory(new PropertyValueFactory<>("returned"));
     }
 
     private void setCellValueFactoryCustomer() {
@@ -175,8 +193,6 @@ public class CustomerDetails {
     }
     @FXML
     void btnSaveOnAction(ActionEvent event) {
-
-
                 String cusId=custId.getText();
                 String cusName=custName.getText();
                 String cusAdd=custAdd.getText();
@@ -249,6 +265,10 @@ public class CustomerDetails {
 
     @FXML
     void txtClickOnAction(ActionEvent event) throws SQLException {
+        if (todayDate.getValue()==null){
+            msgLabel.setText("Please select today date to check the rentals of the customer.");
+        }
+
         String cusId=custId.getText();
         try {
             CustomerDto customerDto=customerBoImpl.findCustomer(cusId);
@@ -271,4 +291,6 @@ public class CustomerDetails {
     public void btnClearOnAction(ActionEvent actionEvent) {
         clearFields();
     }
+
+
 }
